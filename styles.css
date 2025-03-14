@@ -24,17 +24,15 @@ body {
     gap: 20px;
 }
 
-/* Existing styles remain the same, adding icon-specific styles */
-
 /* Navbar Icon Styles */
 .navbar-right a i {
-    font-size: 18px; /* Adjust size as needed */
+    font-size: 18px;
     color: #333;
     transition: color 0.3s;
 }
 
 .navbar-right a:hover i {
-    color: #ff6347; /* Change color on hover to match the "SALE" link */
+    color: #ff6347;
 }
 
 .navbar-left a, .navbar-right a {
@@ -46,7 +44,7 @@ body {
 }
 
 .navbar-left a.active {
-    color: #ff6347; 
+    color: #ff6347;
 }
 
 .navbar-logo a {
@@ -60,7 +58,7 @@ body {
     width: 20px;
     height: 20px;
 }
-/*underline each navbar link when hovered */
+
 .navbar a:hover {
     text-decoration: underline;
 }
@@ -111,6 +109,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s;
+    
 }
 
 .banner-buttons button:hover {
@@ -168,13 +167,14 @@ body {
 }
 
 .secondary-nav a:hover {
-    color: #ff6347; /* Match the active link color */
+    color: #ff6347;
 }
 
 /* Hero Slider Styles */
 .hero-slider {
     position: relative;
     overflow: hidden;
+    border-bottom: solid 1px #e0e0e0;
 }
 
 .dots {
@@ -203,12 +203,12 @@ body {
 
 .slides {
     display: flex;
-    width: 200%; /* 100% for each slide */
+    width: 200%;
     transition: transform 0.5s ease;
 }
 
 .slide {
-    flex: 0 0 50%; /* Each slide takes 50% of the container width */
+    flex: 0 0 50%;
     width: 100%;
 }
 
@@ -230,17 +230,17 @@ body {
     z-index: 2;
 }
 
-.curious-content h1 {
+.curious-content h2 {
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
-.curious-content h1 span {
+.curious-content h2 span {
     display: block;
     font-size: 72px;
     line-height: 1;
-    color: #007bff; /* Adjust to match the blue in the image */
+    color: #007bff;
 }
 
 .curious-content p {
@@ -256,8 +256,11 @@ body {
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    width: 150px;
+    width: 180px;
     transition: background-color 0.3s;
+    
+    white-space: nowrap; /* Prevents text from wrapping to a new line */
+    overflow: hidden; /* Ensures text stays within bounds if too long */
 }
 
 .curious-content button:hover {
@@ -269,7 +272,6 @@ body {
     flex: 1;
     position: relative;
     overflow: hidden;
-    
     object-fit: cover;
 }
 
@@ -278,4 +280,182 @@ body {
     height: 100%;
     object-fit: cover;
     opacity: 0.8;
+}
+
+/* Product Showcase Styles */
+.product-showcase {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 40px 20px;
+    background-color: #fff;
+    max-width: auto;
+    margin: 0 auto;
+}
+
+.product-box {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    max-width: 410px;
+    height: 520px;
+}
+
+.product-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    transition: background-color 0.3s ease;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    z-index: 0;
+}
+
+.product-content {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #333;
+    text-align: center;
+    width: 80%;
+    z-index: 2;
+}
+
+.product-content h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f2f2f2;
+    text-transform: capitalize;
+}
+
+.product-content p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #f2f2f2;
+}
+
+
+.hover-buttons {
+    position: absolute;
+    top: 67vh; /* Position buttons below the text, adjusted to match the image */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none; /* Always visible, no longer hidden */
+    gap: 10px;
+    z-index: 3;
+}
+
+.shop-btn {
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #333;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+    position: relative;
+    width: 140px; /* Slightly increased to prevent wrapping */
+    white-space: nowrap; /* Prevents text from wrapping to a new line */
+    overflow: hidden; /* Ensures text stays within bounds if too long */
+}
+
+.shop-btn:hover {
+    background-color: #060606;
+    color: #fff;
+}
+
+.product-box:hover .product-image {
+    transform: scale(1.1);
+}
+
+.product-box:hover .hover-buttons {
+    display: flex;
+}
+
+.product-box:hover::before {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* New Section  */
+/* Better Way Banner Styles */
+.better-way-banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: url('middleimage.jpg') center center/cover no-repeat; /* Placeholder image; replace with your actual image path */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Add a subtle overlay for readability */
+.better-way-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay for contrast */
+    z-index: 1;
+}
+
+.better-way-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.better-way-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.better-way-content p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.better-way-logo {
+    display: flex;
+    flex-direction: column; /* Stack "allbirds" and "BY ALGURIOM" vertically */
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.better-way-logo .logo-text {
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.better-way-logo .by-nature {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

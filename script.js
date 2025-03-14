@@ -39,3 +39,4 @@ dots.forEach((dot, index) => {
 // Optional: Pause on hover
 document.querySelector('.hero-slider').addEventListener('mouseover', () => clearInterval(slideInterval));
 document.querySelector('.hero-slider').addEventListener('mouseout', () => slideInterval = setInterval(nextSlide, 10000));
+
