@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-left, .navbar-right {
+    display: flex;
+    gap: 20px;
+}
+
+/* Existing styles remain the same, adding icon-specific styles */
+
+/* Navbar Icon Styles */
+.navbar-right a i {
+    font-size: 18px; /* Adjust size as needed */
+    color: #333;
+    transition: color 0.3s;
+}
+
+.navbar-right a:hover i {
+    color: #ff6347; /* Change color on hover to match the "SALE" link */
+}
+
+.navbar-left a, .navbar-right a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.navbar-left a.active {
+    color: #ff6347; 
+}
+
+.navbar-logo a {
+    font-size: 24px;
+    font-style: italic;
+    color: #333;
+    text-decoration: none;
+}
+
+.navbar-right .icon {
+    width: 20px;
+    height: 20px;
+}
+/*underline each navbar link when hovered */
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Homepage Banner Styles */
+.homepage-banner {
+    display: flex;
+    height: 500px;
+}
+
+.banner-left {
+    flex: 1;
+    background-color: #f5a623;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    color: #333;
+}
+
+.banner-left h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.banner-left h1 span {
+    display: block;
+    font-size: 72px;
+    line-height: 1;
+}
+
+.banner-left p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.banner-buttons button {
+    padding: 15px 30px;
+    background-color: #fff;
+    border: 1px solid #333;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.banner-buttons button:hover {
+    background-color: #060606;
+    color: white;
+}
+
+.banner-right {
+    flex: 1;
+    background: linear-gradient(to bottom, #f5c6cb, #f5e1a4);
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-right::before {
+    content: "SALE";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 200px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.shoe-image {
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    width: 400px;
+    z-index: 2;
+}
+
+.secondary-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.secondary-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 20px;
+    text-transform: capitalize;
+}
+
+.secondary-nav a:hover {
+    color: #ff6347; /* Match the active link color */
+}
+
+/* Hero Slider Styles */
+.hero-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.dots {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #333;
+}
+
+.slides {
+    display: flex;
+    width: 200%; /* 100% for each slide */
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 50%; /* Each slide takes 50% of the container width */
+    width: 100%;
+}
+
+/* Curious Banner Styles */
+.curious-banner {
+    display: flex;
+    height: 500px;
+    position: relative;
+    background-color: #f5f5f5;
+}
+
+.curious-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    color: #333;
+    z-index: 2;
+}
+
+.curious-content h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.curious-content h1 span {
+    display: block;
+    font-size: 72px;
+    line-height: 1;
+    color: #007bff; /* Adjust to match the blue in the image */
+}
+
+.curious-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.curious-content button {
+    padding: 15px 30px;
+    background-color: #fff;
+    border: 1px solid #333;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 150px;
+    transition: background-color 0.3s;
+}
+
+.curious-content button:hover {
+    background-color: #060606;
+    color: white;
+}
+
+.curious-image {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    
+    object-fit: cover;
+}
+
+.curious-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
