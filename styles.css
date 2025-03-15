@@ -459,3 +459,116 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+/* New Section  */
+/* Elite Product Gallery Section Styles */
+.elite-gallery-section {
+    padding: 60px 20px; /* Generous padding for a professional look */
+    background-color: #f5f5f5; /* Soft gray background */
+    max-width: 1400px;
+    margin: 0 auto; /* Center the section */
+    box-sizing: border-box;
+    /* margin-right: 24vh; */
+    /* margin-left: 24px; */
+    
+}
+
+.elite-gallery-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns */
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    gap: 30px; /* Spacing between boxes */
+    justify-items: center; /* Center items horizontally */
+}
+
+.elite-product-box {
+    position: relative;
+    width: 300px; /* Fixed width for consistency */
+    height: 350px; /* Fixed height for a rectangular professional look */
+    overflow: hidden;
+   
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    
+}
+
+.elite-product-box:hover {
+    /* transform: translateY(-10px); Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.elite-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.elite-product-box:hover .elite-product-image {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+.elite-product-info {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    color: #000000;
+    z-index: 2;
+    text-align: left;
+    /* background: rgba(0, 0, 0, 0.6); Semi-transparent background for text */
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+.elite-product-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.elite-product-price {
+    margin: 0;
+    color: #e74c3c; /* Unique red-orange for prices */
+    font-weight: 500;
+}
+
+.elite-product-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay on hover */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+}
+
+.elite-product-box:hover .elite-product-overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+.premium-action-btn {
+    padding: 12px 30px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    
+    border: 0.5px solid #000000;
+    /* border-color: #000000; */
+}
+
+.premium-action-btn:hover {
+    background-color: #000000;
+    color: #fff;
+    border-color: #333;
+    
+}
