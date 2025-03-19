@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SoleNest Sale Page</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="main_responsive.css" />
     <!-- Font Awesome CDN -->
     <link
       rel="stylesheet"
@@ -52,7 +53,7 @@
       <div class="slides">
         <!-- Slide 1: Original Sale Banner -->
         <div class="slide">
-          <section class="homepage-banner">
+          <section class="homepage-banner" id="hero-section">
             <div class="banner-left">
               <h1>UP TO <span>50% OFF</span></h1>
               <p>SELECT STYLES</p>
@@ -145,7 +146,7 @@
     </section>
 
     <!-- Elite Product Gallery Section -->
-    <section class="elite-gallery-section">
+    <section class="elite-gallery-section" id="elite-products">
       <div class="elite-gallery-container">
         <div class="elite-product-box">
           <img src="Pro1.jpg" alt="Product 1" class="elite-product-image" />
@@ -230,46 +231,203 @@
       </div>
     </section>
 
-    <!-- New Section -->
     <!-- Featured Stories Section -->
-
-    <section class="featured-stories-section">
+    <section class="featured-stories-section" id="featured-stories">
       <h1 class="stories-heading">To Read</h1>
-      <div class="featured-stories-container">
-        <div class="featured-story">
-          <img src="Story1.jpg" alt="Story 1" class="featured-story-image" />
-          <div class="featured-story-content">
-            <h3 class="featured-story-title">Styling Leather Boots</h3>
-            <p class="featured-story-text">
-              Discover how to pair your leather boots for any occasion this
-              season.
-            </p>
-            <button class="premium-action-btn">Read More</button>
+      <div class="carousel-wrapper">
+        <button
+          class="carousel-btn carousel-btn-left"
+          aria-label="Previous Story"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="featured-stories-container">
+          <div class="featured-story">
+            <img src="Story1.jpg" alt="Story 1" class="featured-story-image" />
+            <div class="featured-story-content">
+              <h3 class="featured-story-title">Styling Leather Boots</h3>
+              <p class="featured-story-text">
+                Discover how to pair your leather boots for any occasion this
+                season.
+              </p>
+              <button class="premium-action-btn">Read More</button>
+            </div>
+          </div>
+          <div class="featured-story">
+            <img src="Story2.jpg" alt="Story 2" class="featured-story-image" />
+            <div class="featured-story-content">
+              <h3 class="featured-story-title">Spring Fashion Tips</h3>
+              <p class="featured-story-text">
+                Top 5 trends to refresh your wardrobe with our latest
+                collection.
+              </p>
+              <button class="premium-action-btn">Read More</button>
+            </div>
+          </div>
+          <div class="featured-story">
+            <img src="Story3.jpg" alt="Story 3" class="featured-story-image" />
+            <div class="featured-story-content">
+              <h3 class="featured-story-title">Behind the Design</h3>
+              <p class="featured-story-text">
+                Meet the creators of our premium sneaker line.
+              </p>
+              <button class="premium-action-btn">Read More</button>
+            </div>
+          </div>
+          <div class="featured-story">
+            <img src="Story4.jpg" alt="Story 4" class="featured-story-image" />
+            <div class="featured-story-content">
+              <h3 class="featured-story-title">Winter Wardrobe Essentials</h3>
+              <p class="featured-story-text">
+                Stay warm and stylish with our top picks for winter.
+              </p>
+              <button class="premium-action-btn">Read More</button>
+            </div>
+          </div>
+          <div class="featured-story">
+            <img src="Story5.jpg" alt="Story 5" class="featured-story-image" />
+            <div class="featured-story-content">
+              <h3 class="featured-story-title">Sustainable Fashion</h3>
+              <p class="featured-story-text">
+                Learn how we’re making eco-friendly choices in our designs.
+              </p>
+              <button class="premium-action-btn">Read More</button>
+            </div>
+          </div>
+          <div class="featured-story">
+            <img src="Story6.jpg" alt="Story 6" class="featured-story-image" />
+            <div class="featured-story-content">
+              <h3 class="featured-story-title">Family Style Guide</h3>
+              <p class="featured-story-text">
+                Dress the whole family with our versatile collection.
+              </p>
+              <button class="premium-action-btn">Read More</button>
+            </div>
           </div>
         </div>
-        <div class="featured-story">
-          <img src="Story2.jpg" alt="Story 2" class="featured-story-image" />
-          <div class="featured-story-content">
-            <h3 class="featured-story-title">Spring Fashion Tips</h3>
-            <p class="featured-story-text">
-              Top 5 trends to refresh your wardrobe with our latest collection.
-            </p>
-            <button class="premium-action-btn">Read More</button>
-          </div>
-        </div>
-        <div class="featured-story">
-          <img src="Story3.jpg" alt="Story 3" class="featured-story-image" />
-          <div class="featured-story-content">
-            <h3 class="featured-story-title">Behind the Design</h3>
-            <p class="featured-story-text">
-              Meet the creators of our premium sneaker line.
-            </p>
-            <button class="premium-action-btn">Read More</button>
-          </div>
-        </div>
+        <button class="carousel-btn carousel-btn-right" aria-label="Next Story">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
       </div>
     </section>
 
+    <!-- New Section -->
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2 class="footer-logo">SoleNest</h2>
+          <p class="footer-tagline">Step into Style with Us</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul>
+            <li><a href="#hero-section" class="footer-link">Home</a></li>
+            <li><a href="#elite-products" class="footer-link">Shop</a></li>
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#featured-stories" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3 class="footer-heading">Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-newsletter">
+          <h3 class="footer-heading">Newsletter</h3>
+          <p class="footer-newsletter-text">
+            Stay updated with our latest trends and offers.
+          </p>
+          <form class="newsletter-form">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="premium-action-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2025 Algorium. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>
