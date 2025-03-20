@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SoleNest Cart</title>
+    <link rel="stylesheet" href="cart.css" />
+    <!-- Font Awesome CDN for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="cart-navbar">
+      <div class="navbar-left">
+        <a href="index.html" class="navbar-logo">SoleNest</a>
+      </div>
+      <a href="#" class="navbar-home">
+        <i class="fas fa-home"></i>
+      </a>
+      <div class="navbar-right">
+        <a href="#" class="navbar-login">Log In</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="navbar-menu">
+        <a href="#" class="navbar-home-mobile">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="#" class="navbar-login-mobile">Log In</a>
+      </div>
+    </nav>
+
+    <!-- Cart Page Content -->
+    <div class="cart-page">
+      <!-- Header Section -->
+      <header class="cart-header">
+        <h1>Shopping Cart</h1>
+        <p>
+          You have <span id="cart-count" class="cart-count">2 items</span> in
+          your cart
+        </p>
+      </header>
+
+      <!-- Main Cart Content -->
+      <div class="cart-container">
+        <!-- Cart Items Section -->
+        <div id="cart-items" class="cart-items">
+          <!-- Cart Item 1 -->
+          <div
+            id="cart-item-1"
+            class="cart-item"
+            data-item-id="1"
+            data-price="100.00"
+          >
+            <img
+              src="Pro1.jpg"
+              alt="SoleNest Air Max 90 Men's Shoe"
+              class="cart-item-image"
+            />
+            <div class="cart-item-details">
+              <h3>Air Max 90 Men's Shoe</h3>
+              <p class="item-style">Style: 525033 911</p>
+              <p class="item-size">Size: US-M 10.5</p>
+              <p class="item-price">
+                $<span class="item-price-value">100.00</span>
+              </p>
+              <div class="quantity-control">
+                <button
+                  class="quantity-btn decrease"
+                  aria-label="Decrease Quantity"
+                  data-item-id="1"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span class="quantity" data-item-id="1">1</span>
+                <button
+                  class="quantity-btn increase"
+                  aria-label="Increase Quantity"
+                  data-item-id="1"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="cart-item-actions">
+              <button
+                class="action-btn edit-btn"
+                data-item-id="1"
+                aria-label="Edit Item"
+              >
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button
+                class="action-btn remove-btn"
+                data-item-id="1"
+                aria-label="Remove Item"
+              >
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+          <!-- Cart Item 2 -->
+          <div
+            id="cart-item-2"
+            class="cart-item"
+            data-item-id="2"
+            data-price="104.87"
+          >
+            <img
+              src="Pro2.jpg"
+              alt="SoleNest Air Max 90 Premium ID Men's Shoe"
+              class="cart-item-image"
+            />
+            <div class="cart-item-details">
+              <h3>Air Max 90 Premium ID Men's Shoe</h3>
+              <p class="item-style">Style: 192709 974</p>
+              <p class="item-size">Size: US-M 12</p>
+              <p class="item-price">
+                $<span class="item-price-value">104.87</span>
+              </p>
+              <div class="quantity-control">
+                <button
+                  class="quantity-btn decrease"
+                  aria-label="Decrease Quantity"
+                  data-item-id="2"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+                <span class="quantity" data-item-id="2">1</span>
+                <button
+                  class="quantity-btn increase"
+                  aria-label="Increase Quantity"
+                  data-item-id="2"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="cart-item-actions">
+              <button
+                class="action-btn edit-btn"
+                data-item-id="2"
+                aria-label="Edit Item"
+              >
+                <i class="fas fa-edit"></i> Edit
+              </button>
+              <button
+                class="action-btn remove-btn"
+                data-item-id="2"
+                aria-label="Remove Item"
+              >
+                <i class="fas fa-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary Section -->
+        <aside class="order-summary">
+          <h2>Order Summary</h2>
+          <div class="summary-row">
+            <span>Subtotal (<span id="summary-item-count">2</span> items)</span>
+            <span>$<span id="subtotal">204.87</span></span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span class="shipping-free">FREE</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimated Tax</span>
+            <span>$0.00</span>
+          </div>
+          <div class="promo-code">
+            <input
+              type="text"
+              id="promo-code"
+              placeholder="Enter Promo Code"
+              class="promo-input"
+            />
+            <button id="apply-promo" class="apply-btn">Apply</button>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>$<span id="total">204.87</span></span>
+          </div>
+          <button id="checkout-btn" class="checkout-btn">
+            <i class="fas fa-lock"></i> Proceed to Checkout
+          </button>
+          <button id="paypal-btn" class="paypal-btn">
+            <i class="fab fa-paypal"></i> Pay with PayPal
+          </button>
+        </aside>
+      </div>
+
+      <!-- Shipping Info -->
+      <div class="shipping-info">
+        <div class="info-card">
+          <i class="fas fa-shipping-fast"></i>
+          <div>
+            <h3>Free Shipping</h3>
+            <p>Enjoy free standard shipping on all orders over $150.</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-undo"></i>
+          <div>
+            <h3>Easy Returns</h3>
+            <p>Return items within 30 days for a full refund.</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <i class="fas fa-headset"></i>
+          <div>
+            <h3>24/7 Support</h3>
+            <p>Contact us anytime for assistance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Section -->
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2 class="footer-logo">SoleNest</h2>
+          <p class="footer-tagline">Step into Style with Us</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul>
+            <li><a href="#hero-section" class="footer-link">Home</a></li>
+            <li><a href="#elite-products" class="footer-link">Shop</a></li>
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#featured-stories" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3 class="footer-heading">Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-newsletter">
+          <h3 class="footer-heading">Newsletter</h3>
+          <p class="footer-newsletter-text">
+            Stay updated with our latest trends and offers.
+          </p>
+          <form class="newsletter-form">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="premium-action-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2025 Algorium. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="cart.js"></script>
+  </body>
+</html>
