@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <a href="#">Admin Dashboard</a>
+      </div>
+      <div class="navbar-right">
+        <a href="#"><i class="fas fa-user"></i> Profile</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </nav>
+
+    <!-- Admin Dashboard Section -->
+    <section class="admin-dashboard">
+      <h1 class="dashboard-heading">Admin Dashboard</h1>
+      <p class="dashboard-subheading">
+        Overview of sales, users, and products with analytics.
+      </p>
+
+      <!-- Product Management Section -->
+      <div class="product-management">
+        <h2 class="section-heading">Manage Products</h2>
+        <form class="product-form" id="productForm">
+          <div class="form-group">
+            <label for="productId">Product ID</label>
+            <input type="text" id="productId" name="productId" required />
+          </div>
+          <div class="form-group">
+            <label for="productCategory">Category</label>
+            <select id="productCategory" name="productCategory" required>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+              <option value="socks">Socks</option>
+              <option value="sale">Sale</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="productPrice">Price</label>
+            <input
+              type="number"
+              id="productPrice"
+              name="productPrice"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="productImage">Image</label>
+            <input
+              type="file"
+              id="productImage"
+              name="productImage"
+              accept="image/*"
+              required
+            />
+          </div>
+          <button type="submit" class="add-product-btn">Add Product</button>
+        </form>
+      </div>
+
+      <!-- Product List Section -->
+      <div class="product-list">
+        <h2 class="section-heading">Product List</h2>
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productList">
+            <!-- Products will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2 class="footer-logo">SoleNest</h2>
+          <p class="footer-tagline">Step into Style with Us</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul>
+            <li><a href="#" class="footer-link">Home</a></li>
+            <li><a href="#" class="footer-link">Shop</a></li>
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3 class="footer-heading">Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-newsletter">
+          <h3 class="footer-heading">Newsletter</h3>
+          <p class="footer-newsletter-text">
+            Stay updated with our latest trends and offers.
+          </p>
+          <form class="newsletter-form">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="premium-action-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          &copy; 2025 Algorium. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+    <script src="js/admin-script.js"></script>
+  </body>
+</html>
