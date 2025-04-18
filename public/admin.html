@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <a href="#">Admin Dashboard</a>
+      </div>
+      <div class="navbar-right">
+        <a href="#"><i class="fas fa-user"></i> Profile</a>
+        <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </nav>
+
+    <!-- Admin Dashboard Section -->
+    <section class="admin-dashboard">
+      <h1 class="dashboard-heading">Admin Dashboard</h1>
+      <p class="dashboard-subheading">
+        Overview of sales, users, and products with analytics.
+      </p>
+
+      <!-- Product Management Section -->
+      <div class="product-management">
+        <h2 class="section-heading">Manage Products</h2>
+        <form
+          class="product-form"
+          id="productForm"
+          enctype="multipart/form-data"
+        >
+          <input type="hidden" id="editProductId" name="editProductId" />
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" name="productName" required />
+          </div>
+          <div class="form-group">
+            <label for="productCategory">Category</label>
+            <select id="productCategory" name="productCategory" required>
+              <option value="MEN">MEN</option>
+              <option value="WOMEN">WOMEN</option>
+              <option value="SOCKS">SOCKS</option>
+              <option value="SALE">SALE</option>
+              <option value="WOMEN">Women</option>
+              <!-- Add more categories as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="productPrice">Price</label>
+            <input
+              type="number"
+              id="productPrice"
+              name="productPrice"
+              step="0.01"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="productStock">Stock</label>
+            <input
+              type="number"
+              id="productStock"
+              name="productStock"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="discountCode">Discount Code</label>
+            <input type="text" id="discountCode" name="discountCode" />
+          </div>
+          <div class="form-group">
+            <label for="discountPercentage">Discount Percentage</label>
+            <input
+              type="number"
+              id="discountPercentage"
+              name="discountPercentage"
+              step="0.1"
+            />
+          </div>
+          <div class="form-group">
+            <label for="discountExpiration">Discount Expiration</label>
+            <input
+              type="date"
+              id="discountExpiration"
+              name="discountExpiration"
+            />
+          </div>
+          <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea
+              id="productDescription"
+              name="productDescription"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>Product Image</label>
+            <div class="image-options">
+              <input
+                type="file"
+                id="productImage"
+                name="images"
+                accept="image/*"
+                multiple
+              />
+              <span>OR</span>
+              <input
+                type="text"
+                id="productImageUrl"
+                name="productImageUrl"
+                placeholder="Enter image URL"
+              />
+            </div>
+          </div>
+          <button type="submit" class="add-product-btn">Add Product</button>
+        </form>
+      </div>
+
+      <!-- Product List Section -->
+      <div class="product-list">
+        <h2 class="section-heading">Product List</h2>
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Discount Code</th>
+              <th>Discount %</th>
+              <th>Expiration</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productList">
+            <!-- Products will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2 class="footer-logo">SoleNest</h2>
+          <p class="footer-tagline">Step into Style with Us</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul>
+            <li><a href="#" class="footer-link">Home</a></li>
+            <li><a href="#" class="footer-link">Shop</a></li>
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3 class="footer-heading">Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-newsletter">
+          <h3 class="footer-heading">Newsletter</h3>
+          <p class="footer-newsletter-text">
+            Stay updated with our latest trends and offers.
+          </p>
+          <form class="newsletter-form">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="premium-action-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Algorium. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script src="/js/admin-script.js"></script>
+  </body>
+</html>
