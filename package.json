@@ -4,6 +4,7 @@
   "scripts": {
     "start": "node src/server.js",
     "start:admin": "node src/admin_server.js",
+    "start:product-listing": "node src/Product_listing_server.js",
     "dev": "concurrently \"nodemon src/server.js\" \"nodemon src/admin_server.js\""
   },
   "dependencies": {

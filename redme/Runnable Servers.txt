@@ -1,0 +1,6 @@
+in order to start the project 
+
+i have to run the following servers okay, main one is npm run dev
+
+1. npm run dev
+2. npm run start:product-listing

@@ -316,3 +316,8 @@ body {
         max-width: 300px;
     }
 }
+.original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 8px;
+}
