@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'SALE': 'sale-grid'
     };
 
+    // Initialize cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartCount();
+
     // Load products and render by category
     async function loadProducts() {
         try {
@@ -27,11 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 grid.innerHTML = '';
             });
 
-            // Group products by category
+            // Group products by category (case-insensitive)
             const productsByCategory = { 'MEN': [], 'WOMEN': [], 'SOCKS': [], 'SALE': [] };
             products.forEach(product => {
-                if (productsByCategory[product.category_name]) {
-                    productsByCategory[product.category_name].push(product);
+                const categoryKey = Object.keys(productsByCategory).find(key => 
+                    key.toUpperCase() === (product.category_name || '').toUpperCase());
+                if (categoryKey) {
+                    productsByCategory[categoryKey].push(product);
                 }
             });
 
@@ -69,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h2 class="product-name">${product.name || 'N/A'}</h2>
                             <p class="product-price">${priceHtml}</p>
                             <button class="view-details-btn" data-id="${product.product_id}">View Details</button>
+                           
                         </div>
                     `;
                     grid.appendChild(productItem);
@@ -79,7 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.view-details-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const productId = this.getAttribute('data-id');
-                    alert(`View Details for Product ID: ${productId}`);
+                    window.location.href = `product-details.html?product_id=${productId}`;
+                });
+            });
+
+            // Add event listeners to "Add to Cart" buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+
+                    // Add product to cart
+                    addToCart({ product_id: productId, name, price });
+                    alert(`${name} has been added to your cart!`);
                 });
             });
         } catch (error) {
@@ -88,6 +108,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 const grid = document.getElementById(gridId);
                 grid.innerHTML = `<p>Error loading products: ${error.message}</p>`;
             });
+        }
+    }
+
+    // Function to add a product to the cart
+    function addToCart(product) {
+        // Check if product already exists in cart
+        const existingItem = cart.find(item => item.product_id === product.product_id);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+
+        // Save cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+    }
+
+    // Function to update cart count in the header
+    function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountElement = document.getElementById('cart-count');
+        if (cartCountElement) {
+            cartCountElement.textContent = `Cart: ${totalItems} items`;
         }
     }
 
