@@ -1,0 +1,180 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Sign-In - SoleNest</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .sign-in-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+      .sign-in-container h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .sign-in-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .sign-in-container button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      .sign-in-container button:hover {
+        background-color: #333;
+      }
+      .error {
+        color: #e63946;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sign-in-container">
+      <h2>Admin Sign-In</h2>
+      <input type="text" id="username" placeholder="Enter username" />
+      <input type="password" id="password" placeholder="Enter password" />
+      <button onclick="verifySignIn()">Proceed</button>
+      <div id="error-message" class="error"></div>
+    </div>
+    <script src="js/admin-sign-in-script.js"></script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Sign-In - SoleNest</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .sign-in-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+      .sign-in-container h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      .sign-in-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .sign-in-container button {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      .sign-in-container button:hover {
+        background-color: #333;
+      }
+      .error {
+        color: #e63946;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sign-in-container">
+      <h2>Admin Sign-In</h2>
+      <input type="text" id="username" placeholder="Enter username" />
+      <input type="password" id="password" placeholder="Enter password" />
+      <button onclick="verifySignIn()">Proceed</button>
+      <div id="error-message" class="error"></div>
+    </div>
+
+    <script>
+      async function verifySignIn() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const errorMessage = document.getElementById("error-message");
+
+        if (!username || !password) {
+          errorMessage.textContent = "Please enter both username and password.";
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            "http://localhost:3001/admin/verify-sign-in",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+            }
+          );
+
+          const result = await response.json();
+
+          if (response.ok && result.success) {
+            // Set sign-in flag in localStorage
+            localStorage.setItem("isSignedIn", "true");
+            // Redirect to admin-login.html on successful sign-in
+            window.location.href = "admin.html";
+          } else {
+            errorMessage.textContent =
+              result.message || "Invalid username or password.";
+          }
+        } catch (error) {
+          console.error("Error verifying sign-in:", error);
+          errorMessage.textContent =
+            "Failed to verify sign-in. Please try again.";
+        }
+      }
+    </script>
+  </body>
+</html>
