@@ -1,11 +1,16 @@
 const express = require('express');
 const pool = require('./db');
+const userRoutes = require('./userRoutes');
 
 const app = express();
 const port = 3000;
 
+// Middleware to parse JSON and serve static files
 app.use(express.json());
 app.use(express.static('public'));
+
+// Use user routes
+app.use('/api', userRoutes);
 
 // Get all products (for product-listing.html, index.html)
 app.get('/api/products', async (req, res) => {
