@@ -253,23 +253,39 @@
                 <div class="flex-1 border-t border-gray-200"></div>
               </div>
 
-              <div class="grid grid-cols-3 gap-4 mb-6">
-                <button
-                  class="py-2 px-4 border rounded-lg flex items-center justify-center social-btn hover:bg-gray-50"
-                >
-                  <i class="fab fa-google text-red-500 mr-2"></i>
-                </button>
-                <button
-                  class="py-2 px-4 border rounded-lg flex items-center justify-center social-btn hover:bg-gray-50"
-                >
-                  <i class="fab fa-facebook-f text-blue-600 mr-2"></i>
-                </button>
-                <button
-                  class="py-2 px-4 border rounded-lg flex items-center justify-center social-btn hover:bg-gray-50"
-                >
-                  <i class="fab fa-apple text-gray-800 mr-2"></i>
-                </button>
+              <!-- Ensure Font Awesome is included in your <head> for the Google icon -->
+              <!-- Ensure Font Awesome is included in your <head> for the Google icon -->
+              <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+              />
+
+              <!-- Add this inside your sign-in form section, below the existing sign-in button -->
+              <div class="flex justify-center mt-4">
+                <div
+                  id="g_id_onload"
+                  data-client_id="668043691244-c53adf1ege5q6u2b8cb8bbsb4sau83m0.apps.googleusercontent.com"
+                  data-callback="handleCredentialResponse"
+                  data-auto_prompt="false"
+                ></div>
+                <div
+                  class="g_id_signin"
+                  data-type="standard"
+                  data-size="large"
+                  data-theme="outline"
+                  data-text="sign_in_with"
+                  data-shape="rectangular"
+                  data-logo_alignment="left"
+                ></div>
               </div>
+
+              <!-- Add these scripts at the bottom of the body -->
+              <script
+                src="https://accounts.google.com/gsi/client"
+                async
+                defer
+              ></script>
+              <script src="/signup-signin.js"></script>
 
               <p class="text-center text-gray-600">
                 Don't have an account?

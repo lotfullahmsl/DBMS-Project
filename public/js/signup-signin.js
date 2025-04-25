@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signinTab.classList.add('text-gray-500');
         signupTab.classList.add('border-emerald-600', 'text-emerald-600');
         signupTab.classList.remove('text-gray-500');
-        signinError.classList.add('hidden'); // Hide error on tab switch
+        signinError.classList.add('hidden');
     });
 
     // Toggle to Sign-In form
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signupTab.classList.add('text-gray-500');
         signinTab.classList.add('border-emerald-600', 'text-emerald-600');
         signinTab.classList.remove('text-gray-500');
-        signupError.classList.add('hidden'); // Hide error on tab switch
+        signupError.classList.add('hidden');
     });
 
     // Sign-In tab click handler
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signupTab.classList.add('text-gray-500');
         this.classList.add('border-emerald-600', 'text-emerald-600');
         this.classList.remove('text-gray-500');
-        signupError.classList.add('hidden'); // Hide error on tab switch
+        signupError.classList.add('hidden');
     });
 
     // Sign-Up tab click handler
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         signinTab.classList.add('text-gray-500');
         this.classList.add('border-emerald-600', 'text-emerald-600');
         this.classList.remove('text-gray-500');
-        signinError.classList.add('hidden'); // Hide error on tab switch
+        signinError.classList.add('hidden');
     });
 
     // Toggle password visibility for sign-in form
@@ -123,15 +123,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sign-up logic
     document.getElementById('signup-button').addEventListener('click', async function(e) {
         e.preventDefault();
-        signupError.classList.add('hidden'); // Hide previous errors
+        signupError.classList.add('hidden');
 
-        // Get the button element
         const signupButton = this;
-        signupButton.disabled = true; // Disable the button
+        signupButton.disabled = true;
         const originalText = signupButton.textContent;
-        signupButton.textContent = 'Loading...'; // Show loading text
+        signupButton.textContent = 'Loading...';
 
-        // Get form inputs
         const firstName = document.getElementById('signup-firstname').value.trim();
         const lastName = document.getElementById('signup-lastname').value.trim();
         const email = document.getElementById('signup-email').value.trim();
@@ -139,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const confirmPassword = document.getElementById('signup-confirm-password').value;
         const termsCheckbox = document.getElementById('terms').checked;
 
-        // Validate inputs
         if (!firstName || !lastName || !email || !password || !confirmPassword) {
             signupError.textContent = 'All fields are required';
             signupError.classList.remove('hidden');
@@ -182,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Send sign-up request to backend
         try {
             const response = await fetch('/api/signup', {
                 method: 'POST',
@@ -207,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // On success, switch to sign-in tab
             signupForm.classList.add('hidden');
             signinForm.classList.remove('hidden');
             signupTab.classList.remove('border-emerald-600', 'text-emerald-600');
@@ -220,27 +215,24 @@ document.addEventListener('DOMContentLoaded', function() {
             signupError.textContent = 'An error occurred. Please try again.';
             signupError.classList.remove('hidden');
         } finally {
-            signupButton.disabled = false; // Re-enable the button
-            signupButton.textContent = originalText; // Restore original text
+            signupButton.disabled = false;
+            signupButton.textContent = originalText;
         }
     });
 
     // Sign-in logic
     document.getElementById('signin-button').addEventListener('click', async function(e) {
         e.preventDefault();
-        signinError.classList.add('hidden'); // Hide previous errors
+        signinError.classList.add('hidden');
 
-        // Get the button element
         const signinButton = this;
-        signinButton.disabled = true; // Disable the button
+        signinButton.disabled = true;
         const originalText = signinButton.textContent;
-        signinButton.textContent = 'Loading...'; // Show loading text
+        signinButton.textContent = 'Loading...';
 
-        // Get form inputs
         const email = document.getElementById('signin-email').value.trim();
         const password = document.getElementById('signin-password').value;
 
-        // Validate inputs
         if (!email || !password) {
             signinError.textContent = 'Email and password are required';
             signinError.classList.remove('hidden');
@@ -258,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Send sign-in request to backend
         try {
             const response = await fetch('/api/signin', {
                 method: 'POST',
@@ -281,18 +272,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Store the JWT token in localStorage
             localStorage.setItem('token', data.token);
-
-            // Redirect to the main page (e.g., index.html)
             window.location.href = '/index.html';
         } catch (error) {
             console.error('Error during sign-in:', error);
             signinError.textContent = 'An error occurred. Please try again.';
             signinError.classList.remove('hidden');
         } finally {
-            signinButton.disabled = false; // Re-enable the button
-            signinButton.textContent = originalText; // Restore original text
+            signinButton.disabled = false;
+            signinButton.textContent = originalText;
         }
     });
+
+    // Google Sign-In Callback
+    window.handleCredentialResponse = function(response) {
+        console.log('Google Sign-In successful, credential:', response.credential);
+        const idToken = response.credential;
+
+        // Send the ID token to the backend
+        fetch('/api/auth/google', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idToken })
+        })
+        .then(res => {
+            console.log('Backend response status:', res.status);
+            return res.json();
+        })
+        .then(data => {
+            console.log('Backend response data:', data);
+            if (data.success) {
+                console.log('Google login successful, storing token');
+                localStorage.setItem('token', data.token);
+                window.location.href = '/index.html';
+            } else {
+                console.error('Google login failed:', data.message);
+                signinError.textContent = data.message || 'Google login failed';
+                signinError.classList.remove('hidden');
+            }
+        })
+        .catch(error => {
+            console.error('Error during backend request:', error);
+            signinError.textContent = 'Failed to communicate with server. Please try again.';
+            signinError.classList.remove('hidden');
+        });
+    };
 });
