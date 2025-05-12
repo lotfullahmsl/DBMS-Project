@@ -23,6 +23,7 @@ async function verifySignIn() {
         if (response.ok && result.success) {
             // Redirect to login page with absolute URL
             window.location.href = 'http://localhost:3000/admin/login';
+            // window.location.href = 'http://localhost:3000/index.html';
         } else {
             errorMessage.textContent = result.message || 'Invalid username or password.';
         }

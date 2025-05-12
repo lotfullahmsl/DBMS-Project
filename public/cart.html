@@ -16,26 +16,95 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="cart-navbar">
+    <nav class="navbar">
       <div class="navbar-left">
         <a href="index.html" class="navbar-logo">SoleNest</a>
       </div>
-      <a href="#" class="navbar-home">
-        <i class="fas fa-home"></i>
-      </a>
       <div class="navbar-right">
-        <a href="#" class="navbar-login">Log In</a>
-      </div>
-      <button class="hamburger" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="navbar-menu">
-        <a href="#" class="navbar-home-mobile">
-          <i class="fas fa-home"></i> Home
-        </a>
-        <a href="#" class="navbar-login-mobile">Log In</a>
+        <a href="cart.html">CART</a>
+        <a id="auth-link" href="signup-signin.html">Login</a>
+        <a id="user-badge" class="user-badge hidden" href="profile.html">?</a>
       </div>
     </nav>
+
+    <style>
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        font-family: "Arial", sans-serif;
+      }
+
+      .navbar-left,
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .navbar-left a,
+      .navbar-right a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+      }
+
+      .navbar-left a:hover,
+      .navbar-right a:hover {
+        color: #10b981;
+      }
+
+      .navbar-left a.active {
+        color: #e53e3e;
+        font-weight: 600;
+      }
+
+      .navbar-logo a {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .user-badge {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #26a69a, #1a746b);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+          -2px -2px 5px rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .user-badge:hover {
+        transform: scale(1.1);
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3),
+          -3px -3px 8px rgba(255, 255, 255, 0.6);
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
 
     <!-- Cart Page Content -->
     <div class="cart-page">
@@ -43,7 +112,7 @@
       <header class="cart-header">
         <h1>Shopping Cart</h1>
         <p>
-          You have <span id="cart-count" class="cart-count">2 items</span> in
+          You have <span id="cart-count" class="cart-count">0 items</span> in
           your cart
         </p>
       </header>
@@ -51,123 +120,23 @@
       <!-- Main Cart Content -->
       <div class="cart-container">
         <!-- Cart Items Section -->
-        <div id="cart-items" class="cart-items">
-          <!-- Cart Item 1 -->
-          <div
-            id="cart-item-1"
-            class="cart-item"
-            data-item-id="1"
-            data-price="100.00"
-          >
-            <img
-              src="images/Pro1.jpg"
-              alt="SoleNest Air Max 90 Men's Shoe"
-              class="cart-item-image"
-            />
-            <div class="cart-item-details">
-              <h3>Air Max 90 Men's Shoe</h3>
-              <p class="item-style">Style: 525033 911</p>
-              <p class="item-size">Size: US-M 10.5</p>
-              <p class="item-price">
-                $<span class="item-price-value">100.00</span>
-              </p>
-              <div class="quantity-control">
-                <button
-                  class="quantity-btn decrease"
-                  aria-label="Decrease Quantity"
-                  data-item-id="1"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <span class="quantity" data-item-id="1">1</span>
-                <button
-                  class="quantity-btn increase"
-                  aria-label="Increase Quantity"
-                  data-item-id="1"
-                >
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-actions">
-              <button
-                class="action-btn edit-btn"
-                data-item-id="1"
-                aria-label="Edit Item"
-              >
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button
-                class="action-btn remove-btn"
-                data-item-id="1"
-                aria-label="Remove Item"
-              >
-                <i class="fas fa-trash"></i> Remove
-              </button>
-            </div>
-          </div>
-          <!-- Cart Item 2 -->
-          <div
-            id="cart-item-2"
-            class="cart-item"
-            data-item-id="2"
-            data-price="104.87"
-          >
-            <img
-              src="images/Pro2.jpg"
-              alt="SoleNest Air Max 90 Premium ID Men's Shoe"
-              class="cart-item-image"
-            />
-            <div class="cart-item-details">
-              <h3>Air Max 90 Premium ID Men's Shoe</h3>
-              <p class="item-style">Style: 192709 974</p>
-              <p class="item-size">Size: US-M 12</p>
-              <p class="item-price">
-                $<span class="item-price-value">104.87</span>
-              </p>
-              <div class="quantity-control">
-                <button
-                  class="quantity-btn decrease"
-                  aria-label="Decrease Quantity"
-                  data-item-id="2"
-                >
-                  <i class="fas fa-minus"></i>
-                </button>
-                <span class="quantity" data-item-id="2">1</span>
-                <button
-                  class="quantity-btn increase"
-                  aria-label="Increase Quantity"
-                  data-item-id="2"
-                >
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-actions">
-              <button
-                class="action-btn edit-btn"
-                data-item-id="2"
-                aria-label="Edit Item"
-              >
-                <i class="fas fa-edit"></i> Edit
-              </button>
-              <button
-                class="action-btn remove-btn"
-                data-item-id="2"
-                aria-label="Remove Item"
-              >
-                <i class="fas fa-trash"></i> Remove
-              </button>
-            </div>
-          </div>
-        </div>
+        <div id="cart-items" class="cart-items"></div>
+
+        <!-- Empty Cart Message -->
+        <p
+          id="empty-cart-message"
+          class="empty-cart-message"
+          style="display: none"
+        >
+          Your cart is empty.
+        </p>
 
         <!-- Order Summary Section -->
         <aside class="order-summary">
           <h2>Order Summary</h2>
           <div class="summary-row">
-            <span>Subtotal (<span id="summary-item-count">2</span> items)</span>
-            <span>$<span id="subtotal">204.87</span></span>
+            <span>Subtotal (<span id="summary-item-count">0</span> items)</span>
+            <span>$<span id="subtotal">0.00</span></span>
           </div>
           <div class="summary-row">
             <span>Shipping</span>
@@ -188,7 +157,7 @@
           </div>
           <div class="summary-row total">
             <span>Total</span>
-            <span>$<span id="total">204.87</span></span>
+            <span>$<span id="total">0.00</span></span>
           </div>
           <button id="checkout-btn" class="checkout-btn">
             <i class="fas fa-lock"></i> Proceed to Checkout
@@ -225,7 +194,6 @@
       </div>
     </div>
 
-    <!-- New Section -->
     <!-- Footer Section -->
     <footer class="footer-section">
       <div class="footer-container">
@@ -315,12 +283,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copyright">
-          &copy; 2025 Algorium. All Rights Reserved.
-        </p>
+        <p class="footer-copyright">© 2025 Algorium. All Rights Reserved.</p>
       </div>
     </footer>
-
+    <script src="js/session-saving.js"></script>
     <script src="js/cart.js"></script>
   </body>
 </html>

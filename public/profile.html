@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SoleNest Profile</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* Navbar Styles (Copied from index.html) */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        font-family: "Arial", sans-serif;
+      }
+
+      .navbar-left,
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .navbar-left a,
+      .navbar-right a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+      }
+
+      .navbar-left a:hover,
+      .navbar-right a:hover {
+        color: #10b981;
+      }
+
+      .navbar-left a.active {
+        color: #e53e3e;
+        font-weight: 600;
+      }
+
+      .navbar-logo a {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .navbar-right a i {
+        font-size: 16px;
+        color: #333;
+        transition: color 0.3s ease;
+        line-height: 1;
+      }
+
+      .navbar-right a i:hover {
+        color: #10b981;
+      }
+
+      .user-badge {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #26a69a, #1a746b);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+          -2px -2px 5px rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .user-badge:hover {
+        transform: scale(1.1);
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3),
+          -3px -3px 8px rgba(255, 255, 255, 0.6);
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Profile Page Styles */
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .profile-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-container h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .profile-picture-section {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .profile-picture-section img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #10b981;
+        margin-bottom: 10px;
+      }
+
+      .profile-picture-section .placeholder {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 14px;
+        margin: 0 auto 10px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 5px;
+        cursor: pointer;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      .form-group input[readonly] {
+        background-color: #f0f0f0;
+        cursor: not-allowed;
+      }
+
+      #change-password-toggle {
+        margin-right: 5px;
+      }
+
+      .password-section {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+        justify-content: center;
+      }
+
+      .button-group button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .button-group .update-btn {
+        background-color: #10b981;
+        color: #fff;
+      }
+
+      .button-group .update-btn:hover {
+        background-color: #0a8f67;
+      }
+
+      .button-group .delete-btn {
+        background-color: #e53e3e;
+        color: #fff;
+      }
+
+      .button-group .delete-btn:hover {
+        background-color: #c53030;
+      }
+
+      .button-group .signout-btn {
+        background-color: #666;
+        color: #fff;
+      }
+
+      .button-group .signout-btn:hover {
+        background-color: #555;
+      }
+
+      .error-message {
+        color: #e53e3e;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+
+      .success-message {
+        color: #10b981;
+        font-size: 14px;
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-left">
+        <a href="product-listing.html#men-section">MEN</a>
+        <a href="product-listing.html#women-section">WOMEN</a>
+        <a href="product-listing.html#socks-section">SOCKS</a>
+        <a href="product-listing.html#sale-section">SALE</a>
+      </div>
+      <div class="navbar-logo">
+        <a href="index.html">SoleNest</a>
+      </div>
+      <div class="navbar-right">
+        <a href="admin-sign-in.html">ADMIN</a>
+        <a href="#">RERUN</a>
+        <a href="product-listing.html">STORES</a>
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="cart.html">CART</a>
+        <!-- <a id="auth-link" href="signup-signin.html">Login</a> -->
+        <a id="user-badge" class="user-badge hidden" href="profile.html">?</a>
+      </div>
+    </nav>
+
+    <!-- Profile Form -->
+    <div class="profile-container">
+      <h2>Manage Your Profile</h2>
+      <div class="profile-picture-section">
+        <div id="profile-picture-placeholder" class="placeholder">
+          No Picture
+        </div>
+        <img
+          id="profile-picture"
+          src=""
+          alt="Profile Picture"
+          style="display: none"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email (Cannot be changed)</label>
+        <input type="email" id="email" readonly />
+      </div>
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" />
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" />
+      </div>
+      <div class="form-group">
+        <label for="profile-picture-url">Profile Picture URL</label>
+        <input
+          type="url"
+          id="profile-picture-url"
+          placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
+        />
+      </div>
+      <div class="form-group">
+        <label>
+          <input
+            type="checkbox"
+            id="change-password-toggle"
+            onchange="togglePasswordSection()"
+          />
+          I want to change my password
+        </label>
+      </div>
+      <div class="password-section hidden">
+        <h3>Change Password</h3>
+        <div class="form-group">
+          <label for="current-password">Current Password</label>
+          <input type="password" id="current-password" />
+        </div>
+        <div class="form-group">
+          <label for="new-password">New Password</label>
+          <input
+            type="password"
+            id="new-password"
+            placeholder="At least 8 characters, 1 number, 1 special character"
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm New Password</label>
+          <input type="password" id="confirm-password" />
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="update-btn" onclick="updateProfile()">
+          Update Profile
+        </button>
+        <button class="delete-btn" onclick="deleteAccount()">
+          Delete Account
+        </button>
+        <button class="signout-btn" onclick="signOut()">Sign Out</button>
+      </div>
+      <div id="error-message" class="error-message"></div>
+      <div id="success-message" class="success-message"></div>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+      const token = localStorage.getItem("token");
+      const errorMessage = document.getElementById("error-message");
+      const successMessage = document.getElementById("success-message");
+
+      // Redirect to login if not authenticated
+      if (!token) {
+        window.location.href = "signup-signin.html";
+      }
+
+      // Fetch user data on page load
+      window.onload = function () {
+        fetch("/api/user", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Failed to fetch user data");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            if (data.success) {
+              const user = data.user;
+              document.getElementById("email").value = user.email;
+              document.getElementById("first-name").value = user.first_name;
+              document.getElementById("last-name").value = user.last_name;
+              if (user.profile_picture) {
+                const profilePic = document.getElementById("profile-picture");
+                profilePic.src = user.profile_picture;
+                profilePic.style.display = "block";
+                document.getElementById(
+                  "profile-picture-placeholder"
+                ).style.display = "none";
+                document.getElementById("profile-picture-url").value =
+                  user.profile_picture;
+              }
+            } else {
+              localStorage.removeItem("token");
+              window.location.href = "signup-signin.html";
+            }
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+            localStorage.removeItem("token");
+            window.location.href = "signup-signin.html";
+          });
+      };
+
+      // Toggle password section visibility
+      function togglePasswordSection() {
+        const passwordSection = document.querySelector(".password-section");
+        const toggle = document.getElementById("change-password-toggle");
+        passwordSection.classList.toggle("hidden", !toggle.checked);
+        // Clear password fields when hiding the section
+        if (!toggle.checked) {
+          document.getElementById("current-password").value = "";
+          document.getElementById("new-password").value = "";
+          document.getElementById("confirm-password").value = "";
+        }
+      }
+
+      // Update Profile
+      function updateProfile() {
+        const firstName = document.getElementById("first-name").value.trim();
+        const lastName = document.getElementById("last-name").value.trim();
+        const profilePictureUrl = document
+          .getElementById("profile-picture-url")
+          .value.trim();
+        const changePassword = document.getElementById(
+          "change-password-toggle"
+        ).checked;
+        const currentPassword =
+          document.getElementById("current-password").value;
+        const newPassword = document.getElementById("new-password").value;
+        const confirmPassword =
+          document.getElementById("confirm-password").value;
+
+        // Validation: Required fields
+        if (!firstName || !lastName) {
+          showError("First name and last name are required.");
+          return;
+        }
+
+        // Validate profile picture URL if provided
+        if (profilePictureUrl && !isValidUrl(profilePictureUrl)) {
+          showError("Please enter a valid URL for the profile picture.");
+          return;
+        }
+
+        // Validate password fields only if the user wants to change the password
+        const updateData = {
+          first_name: firstName,
+          last_name: lastName,
+          profile_picture: profilePictureUrl || null,
+        };
+
+        if (changePassword) {
+          if (!currentPassword) {
+            showError("Please enter your current password to change it.");
+            return;
+          }
+          if (newPassword !== confirmPassword) {
+            showError("New password and confirm password do not match.");
+            return;
+          }
+          const passwordRegex =
+            /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+          if (!passwordRegex.test(newPassword)) {
+            showError(
+              "New password must be at least 8 characters long and include a number and a special character."
+            );
+            return;
+          }
+          updateData.current_password = currentPassword;
+          updateData.password = newPassword;
+        }
+
+        fetch("/api/profile/update", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updateData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              showSuccess("Profile updated successfully!");
+              setTimeout(() => {
+                window.location.reload();
+              }, 1500);
+            } else {
+              showError(data.message || "Failed to update profile.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error updating profile:", error);
+            showError("Server error. Please try again later.");
+          });
+      }
+
+      // Delete Account
+      function deleteAccount() {
+        if (
+          !confirm(
+            "Are you sure you want to delete your account? This action cannot be undone."
+          )
+        ) {
+          return;
+        }
+
+        fetch("/api/profile/delete", {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              localStorage.removeItem("token");
+              window.location.href = "index.html";
+            } else {
+              showError(data.message || "Failed to delete account.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting account:", error);
+            showError("Server error. Please try again later.");
+          });
+      }
+
+      // Sign Out
+      function signOut() {
+        localStorage.removeItem("token");
+        window.location.href = "index.html";
+      }
+
+      // Helper Functions
+      function isValidUrl(url) {
+        try {
+          new URL(url);
+          return true;
+        } catch {
+          return false;
+        }
+      }
+
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+        successMessage.style.display = "none";
+      }
+
+      function showSuccess(message) {
+        successMessage.textContent = message;
+        successMessage.style.display = "block";
+        errorMessage.style.display = "none";
+      }
+    </script>
+    <!-- Session Management Script -->
+    <script src="js/session-saving.js"></script>
+  </body>
+</html>

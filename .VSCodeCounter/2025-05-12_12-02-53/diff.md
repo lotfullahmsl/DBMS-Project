@@ -1,0 +1,24 @@
+# Diff Summary
+
+Date : 2025-05-12 12:02:53
+
+Directory f:\\Bahria University On Campus\\BSE-4A\\DBMS-Lab\\Project\\DBMS-Project\\public
+
+Total : 2 files,  59 codes, 0 comments, 8 blanks, all 67 lines
+
+[Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)
+
+## Languages
+| language | files | code | comment | blank | total |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| HTML | 1 | 59 | -1 | 8 | 66 |
+| JavaScript | 1 | 0 | 1 | 0 | 1 |
+
+## Directories
+| path | files | code | comment | blank | total |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| . | 2 | 59 | 0 | 8 | 67 |
+| . (Files) | 1 | 59 | -1 | 8 | 66 |
+| js | 1 | 0 | 1 | 0 | 1 |
+
+[Summary](results.md) / [Details](details.md) / Diff Summary / [Diff Details](diff-details.md)
