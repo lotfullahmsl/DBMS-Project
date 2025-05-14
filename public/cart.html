@@ -21,7 +21,7 @@
         <a href="index.html" class="navbar-logo">SoleNest</a>
       </div>
       <div class="navbar-right">
-        <a href="cart.html">CART</a>
+        <!-- <a href="cart.html">CART</a> -->
         <a id="auth-link" href="signup-signin.html">Login</a>
         <a id="user-badge" class="user-badge hidden" href="profile.html">?</a>
       </div>
@@ -144,7 +144,11 @@
           </div>
           <div class="summary-row">
             <span>Estimated Tax</span>
-            <span>$0.00</span>
+            <span>$<span id="tax">0.00</span></span>
+          </div>
+          <div class="summary-row">
+            <span>Promo Code</span>
+            <span class="promo-free">FREE</span>
           </div>
           <div class="promo-code">
             <input
