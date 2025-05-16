@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SoleNest - Search Your Perfect Pair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .floating {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .search-card {
+        transition: all 0.3s ease;
+        transform: scale(1);
+        position: relative;
+      }
+
+      .search-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .loading-bar {
+        width: 0%;
+        transition: width 0.5s ease;
+      }
+
+      .skeleton {
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite linear;
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      .search-input:focus {
+        box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.3); /* Adjusted to purple-600 */
+      }
+
+      /* Style for the View Details button */
+      .view-details-btn {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        padding: 8px 16px;
+        font-size: 14px;
+        text-decoration: none;
+        pointer-events: none;
+        background-color: #fff;
+        border: 1px solid #333;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+      }
+
+      .view-details-btn:hover {
+        background-color: #000000;
+        color: #fff;
+        border-color: #333;
+      }
+
+      .search-card:hover .view-details-btn {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Loading Overlay -->
+    <div
+      id="loadingOverlay"
+      class="fixed inset-0 bg-white bg-opacity-90 flex flex-col items-center justify-center z-50 transition-opacity duration-500"
+    >
+      <div class="flex flex-col items-center">
+        <div class="relative w-32 h-32 mb-8">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-700 rounded-full opacity-20 animate-spin"
+          ></div>
+          <div
+            class="absolute inset-2 bg-white rounded-full flex items-center justify-center"
+          >
+            <div class="text-center">
+              <i
+                class="fas fa-shoe-prints text-4xl text-purple-600 floating"
+              ></i>
+              <p class="text-xs mt-2 text-gray-600 font-medium">SOLE NEST</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            id="loadingBar"
+            class="h-full bg-gradient-to-r from-purple-500 to-purple-700 loading-bar"
+          ></div>
+        </div>
+        <p class="mt-4 text-gray-600 pulse">Finding your perfect pair...</p>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+      <!-- Header -->
+      <header class="flex justify-between items-center mb-12">
+        <div class="flex items-center">
+          <a href="index.html" class="navbar-logo">
+            <h1 class="text-2xl font-bold text-gray-800">SOLE NEST</h1>
+          </a>
+        </div>
+        <!-- Navbar For Profile -->
+        <div class="navbar-right">
+          <!-- <a href="admin-sign-in.html">ADMIN</a>
+          <a href="search.html">Search</a>
+          <a href="product-listing.html">STORES</a>
+          <a href="#"><i class="fas fa-search"></i></a> -->
+          <a href="cart.html" style="margin-left: -2vh">CART</a>
+          <a id="auth-link" href="signup-signin.html">Login</a>
+          <a href="profile.html" id="user-badge" class="user-badge hidden">?</a>
+        </div>
+
+        <!-- Style for it -->
+        <style>
+          .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            font-family: "Arial", sans-serif;
+          }
+
+          .navbar-left,
+          .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Consistent gap between all elements */
+          }
+
+          .navbar-left a,
+          .navbar-right a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+          }
+
+          .navbar-left a:hover,
+          .navbar-right a:hover {
+            color: #10b981;
+          }
+
+          .navbar-left a.active {
+            color: #e53e3e;
+            font-weight: 600;
+          }
+
+          .navbar-logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
+
+          .navbar-right a i {
+            font-size: 16px;
+            color: #333;
+            transition: color 0.3s ease;
+            line-height: 1; /* Ensure icons align vertically with text */
+          }
+
+          .navbar-right a i:hover {
+            color: #10b981;
+          }
+
+          .user-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(
+              145deg,
+              #26a69a,
+              #1a746b
+            ); /* Teal gradient for 3D effect */
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
+              -2px -2px 5px rgba(255, 255, 255, 0.5); /* 3D shadow effect */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for polish */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .user-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3),
+              -3px -3px 8px rgba(255, 255, 255, 0.6);
+          }
+
+          .hidden {
+            display: none;
+          }
+        </style>
+        <!--  -->
+        <!-- <div class="flex items-center space-x-4">
+          <button class="p-2 rounded-full hover:bg-gray-100 transition">
+            <i class="fas fa-shopping-cart text-gray-600"></i>
+          </button>
+          <button class="p-2 rounded-full hover:bg-gray-100 transition">
+            <i class="fas fa-user text-gray-600"></i>
+          </button>
+        </div> -->
+      </header>
+
+      <!-- Hero Search Section -->
+      <section class="mb-16 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+          Find Your Perfect Pair
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+          Step into comfort and style with our curated collection of premium
+          footwear for every occasion.
+        </p>
+
+        <div class="max-w-2xl mx-auto relative">
+          <div class="relative">
+            <input
+              type="text"
+              id="searchInput"
+              class="w-full px-6 py-4 pr-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 search-input transition"
+              placeholder="Search for sneakers, boots, sandals..."
+            />
+            <button
+              id="searchButton"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <div
+            id="categoryButtons"
+            class="flex flex-wrap justify-center mt-4 gap-2"
+          >
+            <!-- Categories will be populated dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <section class="mb-8">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center space-x-4">
+            <div class="relative">
+              <select
+                id="sortSelect"
+                class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                <option value="featured">Sort by: Featured</option>
+                <option value="price-low-high">Price: Low to High</option>
+                <option value="price-high-low">Price: High to Low</option>
+                <option value="newest">Newest Arrivals</option>
+              </select>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+              >
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+
+            <div class="relative">
+              <select
+                id="categorySelect"
+                class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+                <option value="">All Categories</option>
+                <!-- Categories will be populated dynamically -->
+              </select>
+              <div
+                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+              >
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <span class="text-gray-600 mr-2">Filter</span>
+            <button
+              class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+            >
+              <i class="fas fa-sliders-h text-gray-600"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Results -->
+      <section>
+        <h3 class="text-xl font-semibold text-gray-800 mb-6">Search Results</h3>
+
+        <div
+          id="searchResults"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        >
+          <!-- Skeleton Loading -->
+          <div class="skeleton-card">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm search-card"
+            >
+              <div class="skeleton h-48 w-full"></div>
+              <div class="p-4">
+                <div class="skeleton h-5 w-3/4 mb-2"></div>
+                <div class="skeleton h-4 w-1/2 mb-3"></div>
+                <div class="skeleton h-4 w-1/3"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skeleton-card">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm search-card"
+            >
+              <div class="skeleton h-48 w-full"></div>
+              <div class="p-4">
+                <div class="skeleton h-5 w-3/4 mb-2"></div>
+                <div class="skeleton h-4 w-1/2 mb-3"></div>
+                <div class="skeleton h-4 w-1/3"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skeleton-card">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm search-card"
+            >
+              <div class="skeleton h-48 w-full"></div>
+              <div class="p-4">
+                <div class="skeleton h-5 w-3/4 mb-2"></div>
+                <div class="skeleton h-4 w-1/2 mb-3"></div>
+                <div class="skeleton h-4 w-1/3"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skeleton-card">
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm search-card"
+            >
+              <div class="skeleton h-48 w-full"></div>
+              <div class="p-4">
+                <div class="skeleton h-5 w-3/4 mb-2"></div>
+                <div class="skeleton h-4 w-1/2 mb-3"></div>
+                <div class="skeleton h-4 w-1/3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 flex justify-center">
+          <button
+            class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
+          >
+            Load More
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-16 py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Sole Nest</h4>
+            <p class="text-gray-600">
+              Step into comfort with our premium footwear collection for every
+              occasion.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Shop</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >Men</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >Women</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >Kids</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >New Arrivals</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Help</h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >FAQs</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >Shipping</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >Returns</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-purple-600 transition"
+                  >Size Guide</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+            <p class="text-gray-600 mb-4">
+              Subscribe for updates and exclusive offers.
+            </p>
+            <div class="flex">
+              <input
+                type="email"
+                placeholder="Your email"
+                class="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-purple-500 w-full"
+              />
+              <button
+                class="bg-purple-600 text-white px-4 py-2 rounded-r-lg hover:bg-purple-700 transition"
+              >
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-500 text-sm">
+            © 2025 Sole Nest. All rights reserved.
+          </p>
+          <div class="flex space-x-4 mt-4 md:mt-0">
+            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
+              ><i class="fab fa-pinterest-p"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        const loadingBar = document.getElementById("loadingBar");
+        const searchResults = document.getElementById("searchResults");
+        const searchButton = document.getElementById("searchButton");
+        const searchInput = document.getElementById("searchInput");
+        const categoryButtons = document.getElementById("categoryButtons");
+        const sortSelect = document.getElementById("sortSelect");
+        const categorySelect = document.getElementById("categorySelect");
+
+        let categories = [];
+
+        // Animate loading bar
+        let width = 0;
+        const interval = setInterval(() => {
+          if (width >= 100) {
+            clearInterval(interval);
+            loadingOverlay.style.opacity = "0";
+            setTimeout(() => {
+              loadingOverlay.style.display = "none";
+              loadCategories();
+              loadProducts();
+            }, 500);
+          } else {
+            width += 10;
+            loadingBar.style.width = width + "%";
+          }
+        }, 200);
+
+        // Fetch categories and populate dropdown and buttons
+        async function loadCategories() {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/categories"
+            );
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // Check for backend errors
+            if (data.error) {
+              throw new Error(data.details || data.error);
+            }
+
+            // Remove duplicates based on category_name
+            const uniqueCategories = [];
+            const seenNames = new Set();
+            data.forEach((category) => {
+              if (!seenNames.has(category.category_name)) {
+                seenNames.add(category.category_name);
+                uniqueCategories.push(category);
+              }
+            });
+            categories = uniqueCategories;
+
+            // Populate category dropdown
+            categorySelect.innerHTML =
+              '<option value="">All Categories</option>';
+            categories.forEach((category) => {
+              const option = document.createElement("option");
+              option.value = category.category_id;
+              option.textContent = category.category_name;
+              categorySelect.appendChild(option);
+            });
+
+            // Populate quick search buttons
+            categoryButtons.innerHTML = "";
+            categories.forEach((category) => {
+              const button = document.createElement("button");
+              button.className =
+                "px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition";
+              button.textContent = category.category_name;
+              button.dataset.categoryId = category.category_id;
+              button.addEventListener("click", () => {
+                categorySelect.value = category.category_id;
+                loadProducts();
+              });
+              categoryButtons.appendChild(button);
+            });
+          } catch (error) {
+            console.error("Error loading categories:", error.message);
+            categoryButtons.innerHTML =
+              '<p class="text-gray-600">Failed to load categories. Please try again later.</p>';
+            categorySelect.innerHTML =
+              '<option value="">Failed to load categories</option>';
+          }
+        }
+
+        // Search functionality
+        searchButton.addEventListener("click", () => loadProducts());
+        searchInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            loadProducts();
+          }
+        });
+
+        // Filter changes
+        sortSelect.addEventListener("change", () => loadProducts());
+        categorySelect.addEventListener("change", () => loadProducts());
+
+        // Load products dynamically
+        async function loadProducts() {
+          const query = searchInput.value.trim();
+          const sort = sortSelect.value;
+          const categoryId = categorySelect.value;
+
+          // Show loading state
+          searchResults.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center py-12">
+                        <div class="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                        <p class="text-gray-600">${
+                          query
+                            ? `Searching for "${query}"...`
+                            : "Loading products..."
+                        }</p>
+                    </div>
+                `;
+
+          try {
+            let url = "http://localhost:3000/api/products";
+            const params = new URLSearchParams();
+            if (query) params.append("search", query);
+            if (sort && sort !== "featured") params.append("sort", sort);
+            if (categoryId) params.append("category_id", categoryId);
+            if (params.toString()) url += `?${params.toString()}`;
+
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const products = await response.json();
+
+            // Check for backend errors
+            if (products.error) {
+              throw new Error(products.details || products.error);
+            }
+
+            // Display products
+            if (products.length > 0) {
+              let html = "";
+              products.forEach((product) => {
+                // Safely handle price as a number
+                let priceValue = 0;
+                if (product.price !== null && product.price !== undefined) {
+                  priceValue = Number(product.price); // Convert to number
+                }
+                if (isNaN(priceValue)) {
+                  priceValue = 0; // Fallback to 0 if conversion fails
+                }
+                html += `
+                                <div class="bg-white rounded-xl overflow-hidden烧shadow-sm search-card group">
+                                    <div class="relative h-48 overflow-hidden">
+                                        <img src="${
+                                          product.primary_image_url ||
+                                          "https://via.placeholder.com/300x200?text=No+Image"
+                                        }" 
+                                             alt="${product.name}" 
+                                             class="w-full h-full object-contain transition duration-300 group-hover:scale-105"
+                                             onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                                        <a href="product-details.html?product_id=${
+                                          product.product_id
+                                        }" class="view-details-btn">
+                                            View Details
+                                        </a>
+                                    </div>
+                                    <div class="p-4">
+                                        <h4 class="font-semibold text-gray-800 mb-1">${
+                                          product.name
+                                        }</h4>
+                                        <p class="text-sm text-gray-500 mb-2">${
+                                          product.category_name
+                                        }</p>
+                                        <p class="font-bold text-gray-800 mb-3">$${priceValue.toFixed(
+                                          2
+                                        )}</p>
+                                    </div>
+                                </div>
+                            `;
+              });
+              searchResults.innerHTML = html;
+            } else {
+              searchResults.innerHTML = `
+                            <div class="col-span-full flex flex-col items-center py-12">
+                                <i class="fas fa-search text-5xl text-gray-300 mb-4"></i>
+                                <h4 class="text-xl font-semibold text-gray-700 mb-2">No results found</h4>
+                                <p class="text-gray-500">Try different search terms or browse our categories</p>
+                            </div>
+                        `;
+            }
+          } catch (error) {
+            console.error("Error loading products:", error.message);
+            searchResults.innerHTML = `
+                        <div class="col-span-full flex flex-col items-center py-12">
+                            <i class="fas fa-exclamation-circle text-5xl text-gray-300 mb-4"></i>
+                            <h4 class="text-xl font-semibold text-gray-700 mb-2">Error loading products</h4>
+                            <p class="text-gray-500">Please try again later: ${error.message}</p>
+                        </div>
+                    `;
+          }
+        }
+      });
+    </script>
+    <script src="js/session-saving.js"></script>
+  </body>
+</html>

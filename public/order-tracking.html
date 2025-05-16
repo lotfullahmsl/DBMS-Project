@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Tracking | SoleNest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      .progress-bar {
+        height: 6px;
+        transition: width 0.3s ease;
+      }
+
+      .step.active .step-icon {
+        background-color: #3b82f6;
+        color: white;
+      }
+
+      .step.completed .step-icon {
+        background-color: #10b981;
+        color: white;
+      }
+
+      .step.pending .step-icon {
+        background-color: #d1d5db;
+        color: #6b7280;
+      }
+
+      .animate-pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+      <div class="text-center mb-10">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Track Your Order</h1>
+        <p class="text-gray-600">Check the status of your recent order</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-6">
+            <div>
+              <h2 class="text-xl font-semibold text-gray-800" id="order-id">
+                Order #YT456789
+              </h2>
+              <p class="text-gray-500 text-sm" id="order-date">
+                Placed on June 15, 2023
+              </p>
+            </div>
+            <span
+              class="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800"
+              id="order-status"
+              >In Transit</span
+            >
+          </div>
+
+          <div class="relative">
+            <!-- Progress bar -->
+            <div
+              class="absolute top-1/2 left-0 right-0 transform -translate-y-1/2 h-1 bg-gray-200 rounded-full z-0"
+            >
+              <div
+                class="progress-bar bg-blue-500 rounded-full w-0"
+                id="progress-bar"
+              ></div>
+            </div>
+
+            <!-- Steps -->
+            <div
+              class="relative flex justify-between z-10"
+              id="steps-container"
+            >
+              <div class="step completed">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="step-icon w-10 h-10 rounded-full flex items-center justify-center border-4 border-white shadow-md mb-2"
+                  >
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <span class="text-xs font-medium text-gray-700"
+                    >Order Placed</span
+                  >
+                  <span class="text-xs text-gray-500 mt-1" id="step1-date"
+                    >Jun 15</span
+                  >
+                </div>
+              </div>
+
+              <div class="step completed">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="step-icon w-10 h-10 rounded-full flex items-center justify-center border-4 border-white shadow-md mb-2"
+                  >
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <span class="text-xs font-medium text-gray-700"
+                    >Processed</span
+                  >
+                  <span class="text-xs text-gray-500 mt-1" id="step2-date"
+                    >Jun 16</span
+                  >
+                </div>
+              </div>
+
+              <div class="step active">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="step-icon w-10 h-10 rounded-full flex items-center justify-center border-4 border-white shadow-md mb-2"
+                  >
+                    <i class="fas fa-truck"></i>
+                  </div>
+                  <span class="text-xs font-medium text-gray-700">Shipped</span>
+                  <span class="text-xs text-gray-500 mt-1" id="step3-date"
+                    >Jun 17</span
+                  >
+                </div>
+              </div>
+
+              <div class="step pending">
+                <div class="flex flex-col items-center">
+                  <div
+                    class="step-icon w-10 h-10 rounded-full flex items-center justify-center border-4 border-white shadow-md mb-2"
+                  >
+                    <i class="fas fa-home"></i>
+                  </div>
+                  <span class="text-xs font-medium text-gray-700"
+                    >Delivered</span
+                  >
+                  <span class="text-xs text-gray-500 mt-1" id="step4-date"
+                    >Est. Jun 20</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Purchased Items Section -->
+      <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            Purchased Items
+          </h3>
+          <div class="flex flex-wrap gap-4" id="purchased-items">
+            <!-- Purchased items will be populated dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            Shipping Details
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-sm font-medium text-gray-500 mb-2">
+                Shipping Address
+              </h4>
+              <p class="text-gray-800" id="shipping-address">
+                123 Main Street<br />
+                Apt 4B<br />
+                New York, NY 10001<br />
+                United States
+              </p>
+            </div>
+
+            <div>
+              <h4 class="text-sm font-medium text-gray-500 mb-2">
+                Carrier Information
+              </h4>
+              <div class="flex items-center mb-2">
+                <div
+                  class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mr-3"
+                >
+                  <i class="fas fa-truck text-gray-500"></i>
+                </div>
+                <div>
+                  <p class="font-medium text-gray-800" id="carrier-name">
+                    FedEx Express
+                  </p>
+                  <p class="text-sm text-gray-500" id="tracking-number">
+                    Tracking #FX123456789
+                  </p>
+                </div>
+              </div>
+              <a
+                href="#"
+                class="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                id="track-link"
+                >Track on carrier website →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">
+            Order Summary
+          </h3>
+
+          <div class="space-y-4" id="order-summary">
+            <div
+              class="flex justify-between items-center pb-4 border-b border-gray-100"
+            >
+              <div>
+                <h4 class="font-medium text-gray-800">Subtotal</h4>
+              </div>
+              <span class="text-gray-800" id="summary-subtotal">$129.99</span>
+            </div>
+
+            <div
+              class="flex justify-between items-center pb-4 border-b border-gray-100"
+            >
+              <div>
+                <h4 class="font-medium text-gray-800">Shipping</h4>
+                <p class="text-sm text-gray-500">Standard Delivery</p>
+              </div>
+              <span class="text-gray-800" id="summary-shipping">$5.99</span>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div>
+                <h4 class="font-medium text-gray-800">Total</h4>
+              </div>
+              <span class="text-lg font-bold text-gray-800" id="summary-total"
+                >$135.98</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button
+          class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 mr-3"
+          id="print-details"
+        >
+          <i class="fas fa-print mr-2"></i> Print Details
+        </button>
+        <a
+          href="index.html"
+          class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg transition duration-200"
+        >
+          <i class="fas fa-home mr-2"></i> Go to Home
+        </a>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load order confirmation data from localStorage
+        const confirmationData =
+          JSON.parse(localStorage.getItem("orderConfirmationData")) || {};
+        const { orderId, orderData, paymentMethod } = confirmationData;
+
+        // Debug: Log the retrieved data to verify structure
+        console.log("Order Confirmation Data:", confirmationData);
+        console.log("Order Data:", orderData);
+        console.log("Shipping Address:", orderData?.shippingAddress);
+
+        // Update order ID and date
+        const orderIdElement = document.getElementById("order-id");
+        const orderDateElement = document.getElementById("order-date");
+        orderIdElement.textContent = orderId
+          ? `Order #${orderId}`
+          : "Order #N/A";
+        orderDateElement.textContent = `Placed on ${new Date(
+          "2025-05-15"
+        ).toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric",
+        })}`;
+
+        // Populate purchased items
+        const purchasedItemsContainer =
+          document.getElementById("purchased-items");
+        if (orderData && orderData.items && orderData.items.length > 0) {
+          purchasedItemsContainer.innerHTML = "";
+          orderData.items.forEach((item) => {
+            const itemElement = document.createElement("div");
+            itemElement.className = "relative";
+            itemElement.innerHTML = `
+              <img src="${
+                item.imageUrl || "https://via.placeholder.com/128"
+              }" alt="${
+              item.name || "Unknown Item"
+            }" class="w-32 h-32 object-contain rounded-lg shadow-lg" />
+              <div class="absolute -bottom-2 -right-2 bg-yellow-400 text-xs font-bold px-2 py-1 rounded-full">
+                ${item.quantity || 1} x
+              </div>
+              <p class="text-sm font-medium text-gray-800 mt-2">${
+                item.name || "Unknown Item"
+              }</p>
+              <p class="text-xs text-gray-500">$${
+                item.price ? item.price.toFixed(2) : "0.00"
+              }</p>
+            `;
+            purchasedItemsContainer.appendChild(itemElement);
+          });
+        } else {
+          purchasedItemsContainer.innerHTML =
+            "<p>No items found. Check checkout data.</p>";
+        }
+
+        // Update order summary
+        const summarySubtotal = document.getElementById("summary-subtotal");
+        const summaryShipping = document.getElementById("summary-shipping");
+        const summaryTotal = document.getElementById("summary-total");
+        summarySubtotal.textContent =
+          orderData && orderData.hasOwnProperty("subtotal")
+            ? `$${orderData.subtotal.toFixed(2)}`
+            : "$0.00";
+        summaryShipping.textContent =
+          orderData && orderData.hasOwnProperty("shipping")
+            ? `$${orderData.shipping.toFixed(2)}`
+            : "$0.00";
+        summaryTotal.textContent =
+          orderData && orderData.hasOwnProperty("total")
+            ? `$${orderData.total.toFixed(2)}`
+            : "$0.00";
+
+        // Simulate order status progression (replace with API call if available)
+        const statusProgress = {
+          "Order Placed": {
+            days: 0,
+            icon: "fas fa-check",
+            status: "completed",
+          },
+          Processed: { days: 1, icon: "fas fa-check", status: "completed" },
+          Shipped: { days: 2, icon: "fas fa-truck", status: "active" },
+          Delivered: { days: 4, icon: "fas fa-home", status: "pending" },
+        };
+        const stepsContainer = document.getElementById("steps-container");
+        const progressBar = document.getElementById("progress-bar");
+        const orderStatusElement = document.getElementById("order-status");
+        const steps = stepsContainer.getElementsByClassName("step");
+        const orderDate = new Date("2025-05-15");
+        let currentStep = 2; // Default to "Shipped" for demo (adjust based on API)
+
+        // Update steps and progress
+        let stepsCompleted = 0;
+        Array.from(steps).forEach((step, index) => {
+          const stepName = step.querySelector("span:nth-child(2)").textContent;
+          const dateElement = step.querySelector("span:nth-child(3)");
+          const stepIcon = step.querySelector(".step-icon i");
+          const statusData = statusProgress[stepName];
+          const stepDate = new Date(orderDate);
+          stepDate.setDate(orderDate.getDate() + statusData.days);
+          dateElement.textContent = stepDate.toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+          });
+
+          if (index < currentStep) {
+            step.className = `step ${statusData.status}`;
+            stepIcon.className = statusData.icon;
+            stepsCompleted++;
+          } else if (index === currentStep) {
+            step.className = `step active`;
+            stepIcon.className = statusData.icon;
+            orderStatusElement.textContent = stepName;
+          } else {
+            step.className = `step pending`;
+            stepIcon.className = statusData.icon;
+          }
+        });
+        progressBar.style.width = `${
+          (stepsCompleted / (steps.length - 1)) * 100
+        }%`;
+
+        // Update shipping details
+        const shippingAddressElement =
+          document.getElementById("shipping-address");
+        const carrierNameElement = document.getElementById("carrier-name");
+        const trackingNumberElement =
+          document.getElementById("tracking-number");
+        const trackLinkElement = document.getElementById("track-link");
+        if (orderData && orderData.shippingAddress) {
+          const { street, city, state, zip } = orderData.shippingAddress;
+          const addressLines = [
+            street || "N/A",
+            city ? `${city}, ${state || ""} ${zip || ""}` : "",
+            "United States",
+          ].filter((line) => line.trim() !== "");
+          shippingAddressElement.innerHTML = addressLines.join("<br>");
+        } else {
+          shippingAddressElement.innerHTML = "Address not available";
+        }
+        // Generate unique carrier name based on orderId
+        const uniqueCarrier = `Carrier-${
+          orderId || Math.random().toString(36).substr(2, 5)
+        }`;
+        carrierNameElement.textContent = uniqueCarrier;
+        trackingNumberElement.textContent = `Tracking #${orderId || "N/A"}`;
+        trackLinkElement.href = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${
+          orderId || "N/A"
+        }`;
+
+        // Print details to PDF
+        document
+          .getElementById("print-details")
+          .addEventListener("click", () => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(16);
+            doc.text("Order Details", 10, 10);
+            doc.setFontSize(12);
+            doc.text(`Order #: ${orderId || "N/A"}`, 10, 20);
+            doc.text(
+              `Date: ${new Date("2025-05-15").toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}`,
+              10,
+              30
+            );
+            doc.text(`Status: ${orderStatusElement.textContent}`, 10, 40);
+            doc.text("Purchased Items:", 10, 50);
+            let yPos = 60;
+            if (orderData && orderData.items) {
+              orderData.items.forEach((item, index) => {
+                const itemText = `${index + 1}. ${
+                  item.name || "Unknown Item"
+                } (Qty: ${item.quantity || 1}) - $${
+                  item.price ? item.price.toFixed(2) : "0.00"
+                }`;
+                if (yPos > 280) {
+                  doc.addPage();
+                  yPos = 20;
+                }
+                doc.text(itemText, 10, yPos);
+                yPos += 10;
+              });
+            }
+            doc.text("Order Summary:", 10, yPos);
+            yPos += 10;
+            doc.text(
+              `Subtotal: $${summarySubtotal.textContent.replace("$", "")}`,
+              10,
+              yPos
+            );
+            yPos += 10;
+            doc.text(
+              `Shipping: $${summaryShipping.textContent.replace("$", "")}`,
+              10,
+              yPos
+            );
+            yPos += 10;
+            doc.text(
+              `Total: $${summaryTotal.textContent.replace("$", "")}`,
+              10,
+              yPos
+            );
+            yPos += 10;
+            doc.text("Shipping Address:", 10, yPos);
+            yPos += 10;
+            doc.text(shippingAddressElement.textContent, 10, yPos);
+            yPos += 10;
+            doc.text(`Carrier: ${carrierNameElement.textContent}`, 10, yPos);
+            yPos += 10;
+            doc.text(
+              `Tracking #: ${trackingNumberElement.textContent}`,
+              10,
+              yPos
+            );
+            doc.save(`order_${orderId || "N/A"}_details.pdf`);
+          });
+      });
+    </script>
+  </body>
+</html>

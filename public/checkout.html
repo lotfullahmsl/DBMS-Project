@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout | YourStore</title>
+    <title>Checkout | SoleNest</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -39,7 +39,7 @@
       <!-- Header -->
       <div class="flex justify-between items-center mb-8">
         <div>
-          <h1 class="text-2xl font-bold text-gray-900">YourStore</h1>
+          <h1 class="text-2xl font-bold text-gray-900">SoleNest</h1>
         </div>
         <div class="flex items-center space-x-4">
           <div class="flex items-center">
@@ -247,12 +247,12 @@
                       <span class="font-medium">Credit Card</span>
                       <div class="flex space-x-2">
                         <img
-                          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg"
+                          src="https://cdn3.iconfinder.com/data/icons/payment-method-1/64/_Visa-512.png"
                           class="h-6"
                           alt="Visa"
                         />
                         <img
-                          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg"
+                          src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png"
                           class="h-6"
                           alt="Mastercard"
                         />
@@ -335,7 +335,8 @@
                     <div class="flex items-center justify-between">
                       <span class="font-medium">PayPal</span>
                       <img
-                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/paypal/paypal-original.svg"
+                        src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/250_Paypal_logo-256.png"
+                        src=""
                         class="h-6"
                         alt="PayPal"
                       />
@@ -562,17 +563,17 @@
               <h3 class="text-sm font-medium text-gray-900 mb-3">We accept</h3>
               <div class="flex space-x-4">
                 <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg"
+                  src="https://cdn0.iconfinder.com/data/icons/font-awesome-brands-vol-1/576/cc-visa-512.png"
                   class="h-8"
                   alt="Visa"
                 />
                 <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg"
+                  src="https://cdn3.iconfinder.com/data/icons/remixicon-logos/24/mastercard-fill-512.png"
                   class="h-8"
                   alt="Mastercard"
                 />
                 <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/paypal/paypal-original.svg"
+                  src="https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-2/512/logo-paypal-512.png"
                   class="h-8"
                   alt="PayPal"
                 />
@@ -842,10 +843,22 @@
             });
             const result = await response.json();
             if (response.ok) {
-              // Clear the cart after successful checkout
+              // Prepare confirmation data
+              const confirmationData = {
+                orderId: result.orderId,
+                orderData: orderData,
+                paymentMethod: paymentData.method || "N/A",
+              };
+              // Store confirmation data in localStorage
+              localStorage.setItem(
+                "orderConfirmationData",
+                JSON.stringify(confirmationData)
+              );
+              // Clear the cart
               localStorage.removeItem("checkoutData");
+              // Show alert and redirect
               alert(`Order placed successfully! Order ID: ${result.orderId}`);
-              window.location.href = "order-confirmation.html"; // Redirect to a confirmation page
+              window.location.href = "order-confirmation.html";
             } else {
               alert(`Error: ${result.error}`);
             }
