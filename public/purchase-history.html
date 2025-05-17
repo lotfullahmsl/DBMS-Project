@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase History | SoleNest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f8f9fa;
+      }
+
+      .order-card {
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .order-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .shoe-image {
+        height: 120px;
+        width: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .status-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .status-delivered {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+
+      .status-shipped {
+        background-color: #bfdbfe;
+        color: #1e40af;
+      }
+
+      .status-processing {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+      }
+
+      .close-button:hover {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 flex items-center">
+              <button
+                class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onclick="window.location.href='index.html'"
+              >
+                <span class="text-xl font-bold text-gray-900">SoleNest</span>
+              </button>
+            </div>
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a
+              href="#"
+              class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="#"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >Shop</a
+            >
+            <a
+              href="#"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >Collections</a
+            >
+            <a
+              href="#"
+              class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >About</a
+            >
+          </div>
+          <div class="navbar-right">
+            <a id="auth-link" href="signup-signin.html" class="hidden"></a>
+          </div>
+          <div class="-mr-2 flex items-center sm:hidden">
+            <button
+              type="button"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- Sidebar -->
+        <div class="w-full md:w-64 flex-shrink-0">
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="flex items-center space-x-4 mb-6">
+              <div>
+                <h3 id="user-name" class="text-lg font-medium text-gray-900">
+                  User Name
+                </h3>
+                <p class="text-sm text-gray-500">Manage your account</p>
+              </div>
+            </div>
+            <nav class="space-y-1">
+              <a
+                href="#"
+                class="bg-gray-50 text-indigo-600 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
+              >
+                <i class="fas fa-user-circle text-indigo-500 mr-3"></i>
+                <span>Account Overview</span>
+              </a>
+              <a
+                href="#"
+                class="bg-indigo-50 text-indigo-700 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
+              >
+                <i class="fas fa-history text-indigo-600 mr-3"></i>
+                <span>Purchase History</span>
+              </a>
+              <a
+                href="#"
+                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
+              >
+                <i
+                  class="fas fa-heart text-gray-400 group-hover:text-gray-500 mr-3"
+                ></i>
+                <span>Wishlist</span>
+              </a>
+              <a
+                href="#"
+                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
+              >
+                <i
+                  class="fas fa-map-marker-alt text-gray-400 group-hover:text-gray-500 mr-3"
+                ></i>
+                <span>Addresses</span>
+              </a>
+              <a
+                href="#"
+                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
+              >
+                <i
+                  class="fas fa-cog text-gray-400 group-hover:text-gray-500 mr-3"
+                ></i>
+                <span>Settings</span>
+              </a>
+              <a
+                href="index.html"
+                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md"
+                id="sign-out-link"
+              >
+                <i
+                  class="fas fa-sign-out-alt text-gray-400 group-hover:text-gray-500 mr-3"
+                ></i>
+                <span>Sign out</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="flex-1">
+          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="px-6 py-5 border-b border-gray-200">
+              <h2 class="text-lg font-medium text-gray-900">
+                Purchase History
+              </h2>
+              <p class="mt-1 text-sm text-gray-500">
+                View all your past orders and track current shipments.
+              </p>
+            </div>
+
+            <!-- Summary Cards -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 gap-4 px-6 py-4 bg-gray-50"
+            >
+              <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center">
+                  <div
+                    class="p-3 rounded-full bg-indigo-50 text-indigo-600 mr-4"
+                  >
+                    <i class="fas fa-shopping-bag"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500">
+                      Total Orders
+                    </p>
+                    <p
+                      id="totalOrders"
+                      class="text-2xl font-semibold text-gray-900"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center">
+                  <div class="p-3 rounded-full bg-green-50 text-green-600 mr-4">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500">Completed</p>
+                    <p
+                      id="completedOrders"
+                      class="text-2xl font-semibold text-gray-900"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center">
+                  <div
+                    class="p-3 rounded-full bg-yellow-50 text-yellow-600 mr-4"
+                  >
+                    <i class="fas fa-truck"></i>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-500">In Transit</p>
+                    <p
+                      id="inTransitOrders"
+                      class="text-2xl font-semibold text-gray-900"
+                    >
+                      0
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order History -->
+            <div id="orderHistory" class="divide-y divide-gray-200">
+              <!-- Orders will be dynamically populated here -->
+              <div class="p-6 flex justify-center items-center">
+                <div
+                  class="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+                ></div>
+                <p class="ml-4 text-gray-600">Loading your orders...</p>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div
+              class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+            >
+              <div class="flex-1 flex justify-between sm:hidden">
+                <button
+                  id="prevButtonMobile"
+                  class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  disabled
+                >
+                  Previous
+                </button>
+                <button
+                  id="nextButtonMobile"
+                  class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  disabled
+                >
+                  Next
+                </button>
+              </div>
+              <div
+                class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+              >
+                <div>
+                  <p id="paginationInfo" class="text-sm text-gray-700">
+                    Showing <span class="font-medium">0</span> to
+                    <span class="font-medium">0</span> of
+                    <span class="font-medium">0</span> orders
+                  </p>
+                </div>
+                <div>
+                  <nav
+                    id="paginationNav"
+                    class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                    aria-label="Pagination"
+                  >
+                    <!-- Pagination buttons will be dynamically populated here -->
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <button class="close-button" id="closeModal">×</button>
+        <h3 class="text-lg font-medium text-gray-900 mb-4">
+          Please Log In For Security Purpose
+        </h3>
+        <form id="loginForm">
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="password"
+              class="block text-sm font-medium text-gray-700"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
+          >
+            Login
+          </button>
+        </form>
+        <p id="loginError" class="text-red-500 text-sm mt-2 hidden">
+          Invalid email or password
+        </p>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          const orderHistory = document.getElementById("orderHistory");
+          const totalOrdersElement = document.getElementById("totalOrders");
+          const completedOrdersElement =
+            document.getElementById("completedOrders");
+          const inTransitOrdersElement =
+            document.getElementById("inTransitOrders");
+          const authLink = document.getElementById("auth-link");
+          const userNameElement = document.getElementById("user-name");
+          const loginModal = document.getElementById("loginModal");
+          const loginForm = document.getElementById("loginForm");
+          const loginError = document.getElementById("loginError");
+          const closeModalButton = document.getElementById("closeModal");
+          const paginationInfo = document.getElementById("paginationInfo");
+          const paginationNav = document.getElementById("paginationNav");
+          const prevButtonMobile = document.getElementById("prevButtonMobile");
+          const nextButtonMobile = document.getElementById("nextButtonMobile");
+
+          let currentUserId = null;
+          let allOrders = []; // Store all orders
+          let currentPage = 1;
+          const ordersPerPage = 3;
+
+          // Show login modal on page load
+          loginModal.style.display = "flex";
+
+          // Handle close button for login modal
+          closeModalButton.addEventListener("click", () => {
+            loginModal.style.display = "none";
+          });
+
+          // Handle login form submission
+          loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+              const response = await fetch("http://localhost:3000/api/login", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+              });
+
+              if (!response.ok) {
+                const text = await response.text();
+                throw new Error(
+                  `Login failed: ${text || "Server error"} (Status: ${
+                    response.status
+                  })`
+                );
+              }
+
+              const data = await response.json();
+              if (!data.user_id) {
+                throw new Error("Login response missing user_id");
+              }
+
+              currentUserId = data.user_id;
+              loginModal.style.display = "none";
+              loginError.classList.add("hidden");
+
+              // Use email as a fallback name if not provided
+              userNameElement.textContent =
+                data.name || email.split("@")[0] || "User";
+
+              // Update navbar based on authentication
+              authLink.classList.add("hidden");
+
+              await loadOrders();
+            } catch (error) {
+              console.error("Login error:", error.message);
+              loginError.textContent = error.message;
+              loginError.classList.remove("hidden");
+            }
+          });
+
+          // Function to render orders for the current page
+          function renderOrders() {
+            const start = (currentPage - 1) * ordersPerPage;
+            const end = start + ordersPerPage;
+            const paginatedOrders = allOrders.slice(start, end);
+
+            const totalOrders = allOrders.length;
+            const completedOrders = allOrders.filter(
+              (order) => order.status === "delivered"
+            ).length;
+            const inTransitOrders = allOrders.filter(
+              (order) => order.status === "shipped"
+            ).length;
+
+            totalOrdersElement.textContent = totalOrders;
+            completedOrdersElement.textContent = completedOrders;
+            inTransitOrdersElement.textContent = inTransitOrders;
+
+            // Update pagination info
+            const showingStart = start + 1;
+            const showingEnd = Math.min(end, totalOrders);
+            paginationInfo.innerHTML = `
+              Showing <span class="font-medium">${showingStart}</span> to
+              <span class="font-medium">${showingEnd}</span> of
+              <span class="font-medium">${totalOrders}</span> orders
+            `;
+
+            // Render paginated orders
+            if (paginatedOrders.length > 0) {
+              let html = "";
+              paginatedOrders.forEach((order) => {
+                let statusClass = "",
+                  statusIcon = "",
+                  dateLabel = "",
+                  dateValue = "",
+                  actionButtons = "";
+                if (order.status === "delivered") {
+                  statusClass = "status-delivered";
+                  statusIcon = "fas fa-check-circle";
+                  dateLabel = "Delivery Date";
+                  dateValue = order.delivery_date || "N/A";
+                  actionButtons = `
+                    <button class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                      <i class="fas fa-redo-alt mr-2"></i> Buy Again
+                    </button>
+                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                      <i class="fas fa-star mr-2"></i> Rate Product
+                    </button>
+                  `;
+                } else if (order.status === "shipped") {
+                  statusClass = "status-shipped";
+                  statusIcon = "fas fa-truck";
+                  dateLabel = "Expected Delivery";
+                  dateValue = order.delivery_date || "N/A";
+                  actionButtons = `
+                    <button class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                      <i class="fas fa-map-marker-alt mr-2"></i> Track Order
+                    </button>
+                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
+                      <i class="fas fa-question-circle mr-2"></i> Help
+                    </button>
+                  `;
+                } else if (order.status === "processing") {
+                  statusClass = "status-processing";
+                  statusIcon = "fas fa-spinner";
+                  dateLabel = "Status";
+                  dateValue = "Preparing for shipment";
+                  actionButtons = `
+                    <button class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                      <i class="fas fa-times-circle mr-2"></i> Cancel Order
+                    </button>
+                    <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-700">
+                      <i class="fas fa-comment-alt mr-2"></i> Contact Support
+                    </button>
+                  `;
+                }
+
+                html += `
+                  <div class="order-card p-6 hover:bg-gray-50">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                      <div>
+                        <p class="text-sm text-gray-500">Order #${
+                          order.order_id
+                        }</p>
+                        <h3 class="text-lg font-medium text-gray-900">Order Summary</h3>
+                      </div>
+                      <div class="mt-2 md:mt-0">
+                        <span class="status-badge ${statusClass}">
+                          <i class="${statusIcon} mr-1"></i> ${
+                  order.status.charAt(0).toUpperCase() + order.status.slice(1)
+                }
+                        </span>
+                      </div>
+                    </div>
+                    <div class="space-y-4">
+                      ${order.items
+                        .map(
+                          (item) => `
+                        <div class="flex flex-col md:flex-row gap-6">
+                          <img src="${
+                            item.primary_image_url ||
+                            "https://via.placeholder.com/120?text=No+Image"
+                          }" alt="${
+                            item.product_name
+                          }" class="shoe-image" onerror="this.src='https://via.placeholder.com/120?text=No+Image'">
+                          <div class="flex-1">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                              <div><p class="text-sm text-gray-500">Product</p><p class="font-medium">${
+                                item.product_name
+                              }</p></div>
+                              <div><p class="text-sm text-gray-500">Order Date</p><p class="font-medium">${
+                                order.order_date || "N/A"
+                              }</p></div>
+                              <div><p class="text-sm text-gray-500">Quantity</p><p class="font-medium">${
+                                item.quantity
+                              }</p></div>
+                              <div><p class="text-sm text-gray-500">Price</p><p class="font-medium">$${Number(
+                                item.price_at_purchase
+                              ).toFixed(2)}</p></div>
+                            </div>
+                          </div>
+                        </div>
+                      `
+                        )
+                        .join("")}
+                      <div class="flex justify-between items-center border-t pt-4">
+                        <p class="text-sm text-gray-500">Total</p>
+                        <p class="font-medium">$${Number(
+                          order.total_price
+                        ).toFixed(2)}</p>
+                      </div>
+                      <div class="flex justify-end space-x-3">
+                        ${actionButtons}
+                      </div>
+                    </div>
+                  </div>
+                `;
+              });
+              orderHistory.innerHTML = html;
+            } else {
+              orderHistory.innerHTML = `
+                <div class="p-6 text-center">
+                  <i class="fas fa-shopping-bag text-5xl text-gray-300 mb-4"></i>
+                  <h3 class="text-lg font-medium text-gray-900">No Orders Found</h3>
+                  <p class="text-gray-500">You haven't placed any orders yet.</p>
+                </div>
+              `;
+            }
+
+            // Update pagination buttons
+            updatePagination();
+          }
+
+          // Function to update pagination buttons
+          function updatePagination() {
+            const totalOrders = allOrders.length;
+            const totalPages = Math.ceil(totalOrders / ordersPerPage);
+
+            // Update mobile buttons
+            prevButtonMobile.disabled = currentPage === 1;
+            nextButtonMobile.disabled = currentPage === totalPages;
+            prevButtonMobile.onclick = () => {
+              if (currentPage > 1) {
+                currentPage--;
+                renderOrders();
+              }
+            };
+            nextButtonMobile.onclick = () => {
+              if (currentPage < totalPages) {
+                currentPage++;
+                renderOrders();
+              }
+            };
+
+            // Clear existing pagination buttons
+            paginationNav.innerHTML = "";
+
+            // Add Previous button
+            const prevButton = document.createElement("button");
+            prevButton.className =
+              "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" +
+              (currentPage === 1 ? " opacity-50 cursor-not-allowed" : "");
+            prevButton.innerHTML =
+              '<span class="sr-only">Previous</span><i class="fas fa-chevron-left"></i>';
+            prevButton.disabled = currentPage === 1;
+            prevButton.onclick = () => {
+              if (currentPage > 1) {
+                currentPage--;
+                renderOrders();
+              }
+            };
+            paginationNav.appendChild(prevButton);
+
+            // Add page number buttons
+            for (let i = 1; i <= totalPages; i++) {
+              const pageButton = document.createElement("button");
+              pageButton.className =
+                "relative inline-flex items-center px-4 py-2 border text-sm font-medium " +
+                (i === currentPage
+                  ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600"
+                  : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50");
+              pageButton.textContent = i;
+              pageButton.onclick = () => {
+                currentPage = i;
+                renderOrders();
+              };
+              paginationNav.appendChild(pageButton);
+            }
+
+            // Add Next button
+            const nextButton = document.createElement("button");
+            nextButton.className =
+              "relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" +
+              (currentPage === totalPages
+                ? " opacity-50 cursor-not-allowed"
+                : "");
+            nextButton.innerHTML =
+              '<span class="sr-only">Next</span><i class="fas fa-chevron-right"></i>';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.onclick = () => {
+              if (currentPage < totalPages) {
+                currentPage++;
+                renderOrders();
+              }
+            };
+            paginationNav.appendChild(nextButton);
+          }
+
+          // Function to load orders
+          async function loadOrders() {
+            try {
+              if (!currentUserId) {
+                throw new Error("You have to log in");
+              }
+
+              console.log("User ID for fetching orders:", currentUserId);
+
+              const response = await fetch(
+                `http://localhost:3000/api/orders?user_id=${currentUserId}`,
+                {
+                  method: "GET",
+                }
+              );
+              const text = await response.text();
+              console.log("Raw response from /api/orders:", text);
+              if (!response.ok) {
+                throw new Error(
+                  `HTTP error! Status: ${response.status}, Details: ${text}`
+                );
+              }
+              const orders = JSON.parse(text);
+              if (orders.error) {
+                throw new Error(orders.details || orders.error);
+              }
+
+              allOrders = orders; // Store all orders
+              currentPage = 1; // Reset to first page
+              renderOrders();
+            } catch (error) {
+              console.error("Error loading orders:", error.message);
+              orderHistory.innerHTML = `
+                <div class="p-6 text-center">
+                  <i class="fas fa-exclamation-circle text-5xl text-gray-300 mb-4"></i>
+                  <h3 class="text-lg font-medium text-gray-900">Error Loading Orders</h3>
+                  <p class="text-gray-500">${error.message}</p>
+                </div>
+              `;
+              if (error.message.includes("You have to log in")) {
+                loginModal.style.display = "flex"; // Show login modal again if authentication fails
+              }
+            }
+          }
+
+          // Sign-out functionality
+          const signOutLink = document.getElementById("sign-out-link");
+          if (signOutLink) {
+            signOutLink.addEventListener("click", (e) => {
+              e.preventDefault();
+              currentUserId = null;
+              window.location.href = "index.html"; // Redirect to index.html on sign-out
+            });
+          }
+
+          // Initial load (will trigger modal if not logged in)
+          if (!currentUserId) {
+            await loadOrders();
+          }
+        } catch (error) {
+          console.error("Initialization error:", error);
+          document.body.innerHTML = `
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+              <i class="fas fa-exclamation-circle text-5xl text-red-500 mb-4"></i>
+              <h1 class="text-2xl font-bold text-gray-900">Error Loading Page</h1>
+              <p class="text-gray-500 mt-2">An error occurred while loading the page: ${error.message}</p>
+              <p class="text-gray-500">Please check the console for more details and ensure the backend server is running.</p>
+            </div>
+          `;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="css/footer.css" />
     <style>
       @keyframes float {
         0% {
@@ -78,8 +79,13 @@
         }
       }
 
-      .search-input:focus {
-        box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.3); /* Adjusted to purple-600 */
+      /* .search-input:focus {
+        box-shadow: 0 0 0 3px rgba(244, 178, 23, 0.3); 
+      } */
+      /* change the color to #c93030 */
+      .search-input {
+        border: 1px solid #c93030;
+        transition: all 0.3s ease;
       }
 
       /* Style for the View Details button */
@@ -124,23 +130,23 @@
       <div class="flex flex-col items-center">
         <div class="relative w-32 h-32 mb-8">
           <div
-            class="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-700 rounded-full opacity-20 animate-spin"
+            class="absolute inset-0 [background-image:linear-gradient(to_right,#c93030,#c93030)] rounded-full opacity-20 animate-spin"
           ></div>
           <div
             class="absolute inset-2 bg-white rounded-full flex items-center justify-center"
           >
             <div class="text-center">
-              <i
-                class="fas fa-shoe-prints text-4xl text-purple-600 floating"
-              ></i>
-              <p class="text-xs mt-2 text-gray-600 font-medium">SOLE NEST</p>
+              <i class="fas fa-shoe-prints text-4xl text-red-700 floating"></i>
+
+              <p class="text-xs mt-2 [color:#c93030] font-medium">SOLE NEST</p>
             </div>
           </div>
         </div>
         <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
             id="loadingBar"
-            class="h-full bg-gradient-to-r from-purple-500 to-purple-700 loading-bar"
+            class="h-full loading-bar"
+            style="background: linear-gradient(to right, #c93030, #7a1f1f)"
           ></div>
         </div>
         <p class="mt-4 text-gray-600 pulse">Finding your perfect pair...</p>
@@ -287,12 +293,12 @@
             <input
               type="text"
               id="searchInput"
-              class="w-full px-6 py-4 pr-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 search-input transition"
+              class="w-full px-6 py-4 pr-12 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#c93030] search-input transition"
               placeholder="Search for sneakers, boots, sandals..."
             />
             <button
               id="searchButton"
-              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition"
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#c93030] text-white rounded-full p-3 hover:bg-[#b22222] transition"
             >
               <i class="fas fa-search"></i>
             </button>
@@ -314,7 +320,7 @@
             <div class="relative">
               <select
                 id="sortSelect"
-                class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-[#c93030]"
               >
                 <option value="featured">Sort by: Featured</option>
                 <option value="price-low-high">Price: Low to High</option>
@@ -331,7 +337,7 @@
             <div class="relative">
               <select
                 id="categorySelect"
-                class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-[#c93030]"
               >
                 <option value="">All Categories</option>
                 <!-- Categories will be populated dynamically -->
@@ -417,136 +423,103 @@
           </div>
         </div>
 
-        <div class="mt-8 flex justify-center">
-          <button
-            class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
-          >
-            Load More
-          </button>
-        </div>
+        <div class="mt-8 flex justify-center"></div>
       </section>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 mt-16 py-12">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Sole Nest</h4>
-            <p class="text-gray-600">
-              Step into comfort with our premium footwear collection for every
-              occasion.
-            </p>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Shop</h4>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >Men</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >Women</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >Kids</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >New Arrivals</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Help</h4>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >FAQs</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >Shipping</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >Returns</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-purple-600 transition"
-                  >Size Guide</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-            <p class="text-gray-600 mb-4">
-              Subscribe for updates and exclusive offers.
-            </p>
-            <div class="flex">
-              <input
-                type="email"
-                placeholder="Your email"
-                class="px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-1 focus:ring-purple-500 w-full"
-              />
-              <button
-                class="bg-purple-600 text-white px-4 py-2 rounded-r-lg hover:bg-purple-700 transition"
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2 class="footer-logo">SoleNest</h2>
+          <p class="footer-tagline">Step into Style with Us</p>
+        </div>
+        <div class="footer-links">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul>
+            <li><a href="#hero-section" class="footer-link">Home</a></li>
+            <li><a href="#elite-products" class="footer-link">Shop</a></li>
+            <li><a href="#" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Contact</a></li>
+            <li><a href="#featured-stories" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3 class="footer-heading">Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="Facebook">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </div>
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="GitHub">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 4 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 8 18.13V22"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Instagram">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
           </div>
         </div>
-        <div
-          class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-gray-500 text-sm">
-            © 2025 Sole Nest. All rights reserved.
+        <div class="footer-newsletter">
+          <h3 class="footer-heading">Newsletter</h3>
+          <p class="footer-newsletter-text">
+            Stay updated with our latest trends and offers.
           </p>
-          <div class="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
-              ><i class="fab fa-facebook-f"></i
-            ></a>
-            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="#" class="text-gray-500 hover:text-purple-600 transition"
-              ><i class="fab fa-pinterest-p"></i
-            ></a>
-          </div>
+          <form class="newsletter-form">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="newsletter-input"
+              required
+            />
+            <button type="submit" class="premium-action-btn">Subscribe</button>
+          </form>
         </div>
       </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Algorium. All Rights Reserved.</p>
+      </div>
     </footer>
-
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const loadingOverlay = document.getElementById("loadingOverlay");

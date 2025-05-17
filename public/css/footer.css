@@ -1,0 +1,140 @@
+/* Footer Section Styles */
+.footer-section {
+    background-color: #1a1a1a; /* Dark background for contrast */
+    color: #fff;
+    padding: 60px 20px 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-tagline {
+    font-size: 16px;
+    font-weight: 400;
+    color: #ccc;
+    margin: 0;
+}
+
+.footer-links h3,
+.footer-social h3,
+.footer-newsletter h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 2;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #e74c3c; /* Red-orange color for hover */
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #ccc;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #e74c3c;
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-newsletter-text {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-input {
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+}
+
+.newsletter-input::placeholder {
+    color: #999;
+}
+
+.premium-action-btn {
+    padding: 12px 30px;
+    background-color: #fff;
+    color: #000;
+    border: 0.5px solid #000000;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 0px;
+}
+
+.premium-action-btn:hover {
+    background-color: #000000;
+    color: #fff;
+    border-color: #000000;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.footer-copyright {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+}
