@@ -6,10 +6,10 @@
     <title>SoleNest Sale Page</title>
     <link rel="stylesheet" href="css/styles.css" />
 
+    <!-- Simplified Font Awesome link to avoid integrity error -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -36,6 +36,18 @@
       .navbar-right a:hover {
         color: #10b981;
       }
+      .sale-tag {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #e53e3e;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1;
+      }
     </style>
   </head>
   <body>
@@ -53,11 +65,7 @@
       <div class="navbar-right">
         <a href="admin-sign-in.html">ADMIN</a>
         <a href="search.html">Search</a>
-        <!-- purcheses should be displayed only if the user is loged in  -->
-
-        <a href="purchase-history.html">Purcheses</a>
-
-        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="purchase-history.html">Purchases</a>
         <a href="cart.html" style="margin-left: -2vh">CART</a>
         <a id="auth-link" href="signup-signin.html">Login</a>
         <a href="profile.html" id="user-badge" class="user-badge hidden">?</a>
@@ -272,119 +280,8 @@
 
     <!-- Elite Product Gallery Section -->
     <section class="elite-gallery-section" id="elite-products">
-      <div class="elite-gallery-container">
-        <div class="elite-product-box">
-          <img
-            src="images/Pro1.jpg"
-            alt="Product 1"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Luxury Sneaker</p>
-            <p class="elite-product-price">$95 - $130</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro2.jpg"
-            alt="Product 2"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Elegant Bag</p>
-            <p class="elite-product-price">$160</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro3.jpg"
-            alt="Product 3"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Sporty Shoe</p>
-            <p class="elite-product-price">$100 - $140</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro4.jpg"
-            alt="Product 4"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Casual Dress</p>
-            <p class="elite-product-price">$85 - $120</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro5.jpg"
-            alt="Product 5"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Premium Jacket</p>
-            <p class="elite-product-price">$150 - $200</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro6.jpg"
-            alt="Product 6"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Stylish Watch</p>
-            <p class="elite-product-price">$180</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro7.jpg"
-            alt="Product 7"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Trendy Hat</p>
-            <p class="elite-product-price">$50 - $70</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
-        <div class="elite-product-box">
-          <img
-            src="images/Pro8.jpg"
-            alt="Product 8"
-            class="elite-product-image"
-          />
-          <div class="elite-product-info">
-            <p class="elite-product-name">Leather Boots</p>
-            <p class="elite-product-price">$120 - $160</p>
-          </div>
-          <div class="elite-product-overlay">
-            <button class="premium-action-btn">View Details</button>
-          </div>
-        </div>
+      <div class="elite-gallery-container" id="elite-gallery-container">
+        <!-- Products will be dynamically loaded here -->
       </div>
     </section>
 
@@ -422,8 +319,6 @@
                 Discover how to pair your leather boots for any occasion this
                 season.
               </p>
-
-              <!-- <button class="premium-action-btn">Read More</button> -->
               <button
                 class="premium-action-btn"
                 onclick="window.location.href='LeatherBoots.html'"
@@ -444,7 +339,6 @@
                 Top 5 trends to refresh your wardrobe with our latest
                 collection.
               </p>
-              <!-- <button class="premium-action-btn">Read More</button> -->
               <button
                 class="premium-action-btn"
                 onclick="window.location.href='SpringStyling.html'"
@@ -618,9 +512,146 @@
       </div>
     </footer>
 
-    <!-- Session Management Script -->
+    <!-- Session Management and Product Loading Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        const authLink = document.getElementById("auth-link");
+        const userBadge = document.getElementById("user-badge");
 
-    <!-- Existing Script -->
+        async function checkSession() {
+          try {
+            const sessionId = localStorage.getItem("sessionId");
+            console.log("Session ID from localStorage:", sessionId);
+
+            if (!sessionId) {
+              console.log("No session ID found, user is not logged in.");
+              authLink.classList.remove("hidden");
+              userBadge.classList.add("hidden");
+              return false;
+            }
+
+            const response = await fetch(
+              "http://localhost:3000/api/check-session",
+              {
+                method: "GET",
+                headers: {
+                  "x-session-id": sessionId,
+                },
+              }
+            );
+            const result = await response.json();
+            console.log("Server session check response:", result);
+
+            if (response.ok && result.valid) {
+              console.log("Session is valid, user is logged in.");
+              authLink.classList.add("hidden");
+              userBadge.classList.remove("hidden");
+              const userData =
+                JSON.parse(localStorage.getItem("userData")) || {};
+              userBadge.textContent = userData.name
+                ? userData.name.charAt(0).toUpperCase()
+                : "?";
+              return true;
+            } else {
+              console.log("Session is invalid, clearing local storage.");
+              localStorage.removeItem("sessionId");
+              localStorage.removeItem("userData");
+              authLink.classList.remove("hidden");
+              userBadge.classList.add("hidden");
+              return false;
+            }
+          } catch (error) {
+            console.error("Error checking session:", error.message);
+            authLink.classList.remove("hidden");
+            userBadge.classList.add("hidden");
+            return false;
+          }
+        }
+
+        // Initial check
+        await checkSession();
+
+        // Listen for storage changes
+        window.addEventListener("storage", async function (event) {
+          console.log("Storage event detected:", event.key, event.newValue);
+          await checkSession();
+        });
+
+        // Load products dynamically
+        async function loadProducts() {
+          try {
+            const response = await fetch(
+              "http://localhost:3000/api/home-products"
+            );
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const products = await response.json();
+            console.log("Fetched products:", products);
+
+            const container = document.getElementById(
+              "elite-gallery-container"
+            );
+            container.innerHTML = ""; // Clear existing content
+
+            products.forEach((product, index) => {
+              const productBox = document.createElement("div");
+              productBox.classList.add("elite-product-box");
+
+              // Add sale tag if category is "Sale"
+              const saleTag =
+                product.category_name === "Sale"
+                  ? `<div class="sale-tag">Sale</div>`
+                  : "";
+
+              productBox.innerHTML = `
+                ${saleTag}
+                <img src="${
+                  product.primary_image_url || "/images/default-product.jpg"
+                }" alt="Product ${index + 1}" class="elite-product-image" />
+                <div class="elite-product-info">
+                  <p class="elite-product-name">${
+                    product.name || "Unnamed Product"
+                  }</p>
+                  <p class="elite-product-price">${
+                    product.price_range || product.price || "N/A"
+                  }</p>
+                </div>
+                <div class="elite-product-overlay">
+                  <button class="premium-action-btn" data-product-id="${
+                    product.product_id
+                  }">View Details</button>
+                </div>
+              `;
+
+              container.appendChild(productBox);
+            });
+
+            // Add event listeners to View Details buttons after rendering
+            document
+              .querySelectorAll(".premium-action-btn")
+              .forEach((button) => {
+                button.addEventListener("click", function () {
+                  const productId = this.getAttribute("data-product-id");
+                  window.location.href = `product-listing.html?id=${productId}`;
+                });
+              });
+          } catch (error) {
+            console.error("Error loading products:", error.message);
+            const container = document.getElementById(
+              "elite-gallery-container"
+            );
+            container.innerHTML =
+              "<p>Failed to load products. Please try again later.</p>";
+          }
+        }
+
+        // Load products on page load
+        await loadProducts();
+      });
+    </script>
+
+    <!-- Existing Scripts -->
     <script src="js/session-saving.js"></script>
     <script src="js/script.js"></script>
   </body>
