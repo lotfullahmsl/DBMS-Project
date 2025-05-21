@@ -1,0 +1,38 @@
+Date : 2025-05-19 16:55:25
+Directory : f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public
+Total : 9 files,  1225 codes, 296 comments, 143 blanks, all 1664 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |          5 |        900 |         27 |         57 |        984 |
+| CSS        |          2 |        200 |          1 |         30 |        231 |
+| JavaScript |          2 |        125 |        268 |         56 |        449 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                    | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                       |          9 |      1,225 |        296 |        143 |      1,664 |
+| . (Files)                                                                                               |          5 |        900 |         27 |         57 |        984 |
+| css                                                                                                     |          2 |        200 |          1 |         30 |        231 |
+| js                                                                                                      |          2 |        125 |        268 |         56 |        449 |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\admin.html                   | HTML       |         -1 |          1 |          0 |          0 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\footer.css               | CSS        |        119 |          1 |         20 |        140 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\user-profile.css         | CSS        |         81 |          0 |         10 |         91 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\index.html                   | HTML       |         96 |          0 |         23 |        119 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\product-details-script.js | JavaScript |         64 |        142 |         30 |        236 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\product-listing-script.js | JavaScript |         61 |        126 |         26 |        213 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\product-details.html         | HTML       |          0 |          0 |        -30 |        -30 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\purchase-history.html        | HTML       |        724 |         10 |         50 |        784 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\search.html                  | HTML       |         81 |         16 |         14 |        111 |
+| Total                                                                                                   |            |      1,225 |        296 |        143 |      1,664 |
++---------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

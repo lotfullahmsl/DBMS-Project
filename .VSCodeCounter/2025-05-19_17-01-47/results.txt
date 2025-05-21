@@ -1,0 +1,30 @@
+Date : 2025-05-19 17:01:47
+Directory : f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src
+Total : 6 files,  1044 codes, 798 comments, 242 blanks, all 2084 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |          6 |      1,044 |        798 |        242 |      2,084 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                              | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                 |          6 |      1,044 |        798 |        242 |      2,084 |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                          | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\Product_listing_server.js | JavaScript |         80 |          0 |          7 |         87 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\admin_server.js           | JavaScript |        330 |         26 |         39 |        395 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\checkout.js               | JavaScript |         67 |         83 |         24 |        174 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\db.js                     | JavaScript |         12 |          1 |          2 |         15 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\server.js                 | JavaScript |        192 |        673 |        104 |        969 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\userRoutes.js             | JavaScript |        363 |         15 |         66 |        444 |
+| Total                                                                                             |            |      1,044 |        798 |        242 |      2,084 |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

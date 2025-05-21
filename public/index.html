@@ -53,20 +53,22 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar">
-      <div class="navbar-left">
+      <!-- <div class="navbar-left">
         <a href="product-listing.html#men-section">MEN</a>
         <a href="product-listing.html#women-section">WOMEN</a>
         <a href="product-listing.html#socks-section">SOCKS</a>
         <a href="product-listing.html#sale-section" class="active">SALE</a>
-      </div>
+      </div> -->
       <div class="navbar-logo">
         <a href="#">SoleNest</a>
       </div>
       <div class="navbar-right">
         <a href="admin-sign-in.html">ADMIN</a>
         <a href="search.html">Search</a>
-        <a href="purchase-history.html">Purchases</a>
+
+        <a href="purchase-history.html" style="margin-right: 3vh">Purchases</a>
         <a href="cart.html" style="margin-left: -2vh">CART</a>
+        <a href="about-us.html">About</a>
         <a id="auth-link" href="signup-signin.html">Login</a>
         <a href="profile.html" id="user-badge" class="user-badge hidden">?</a>
       </div>
@@ -91,7 +93,7 @@
       .navbar-right {
         display: flex;
         align-items: center;
-        gap: 15px; /* Consistent gap between all elements */
+        gap: 15px;
       }
 
       .navbar-left a,
@@ -127,7 +129,7 @@
         font-size: 16px;
         color: #333;
         transition: color 0.3s ease;
-        line-height: 1; /* Ensure icons align vertically with text */
+        line-height: 1;
       }
 
       .navbar-right a i:hover {
@@ -138,11 +140,7 @@
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        background: linear-gradient(
-          145deg,
-          #26a69a,
-          #1a746b
-        ); /* Teal gradient for 3D effect */
+        background: linear-gradient(145deg, #26a69a, #1a746b);
         color: #ffffff;
         display: flex;
         align-items: center;
@@ -151,8 +149,8 @@
         font-weight: 600;
         text-decoration: none;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2),
-          -2px -2px 5px rgba(255, 255, 255, 0.5); /* 3D shadow effect */
-        border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for polish */
+          -2px -2px 5px rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
@@ -172,6 +170,10 @@
       <!-- <a href="#">Men's Shoes</a>
       <a href="#">Women's Shoes</a>
       <a href="#">New Arrivals</a> -->
+      <a href="product-listing.html#men-section">MEN</a>
+      <a href="product-listing.html#women-section">WOMEN</a>
+      <a href="product-listing.html#socks-section">SOCKS</a>
+      <a href="product-listing.html#sale-section" class="active">SALE</a>
     </div>
 
     <!-- Homepage Banner -->
@@ -189,8 +191,18 @@
               <p>SELECT STYLES</p>
               <p>ONE WEEKEND ONLY—SAVE BIG ON BREEZY SPRING SHOES!</p>
               <div class="banner-buttons">
-                <button>MEN'S SALE</button>
-                <button>WOMEN'S SALE</button>
+                <!-- should go to a html page -->
+
+                <button
+                  onclick="window.location.href='product-listing.html#sale-section'"
+                >
+                  MEN'S SALE
+                </button>
+                <button
+                  onclick="window.location.href='product-listing.html#sale-section'"
+                >
+                  WOMEN'S SALE
+                </button>
               </div>
             </div>
             <div class="banner-right">
@@ -224,30 +236,56 @@
     <!-- Product Showcase Section -->
     <section class="product-showcase">
       <div class="product-box">
-        <img src="images/Shoes1.jpg" alt="Bestsellers" class="product-image" />
+        <img
+          src="https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Bestsellers"
+          class="product-image"
+        />
         <div class="product-content">
           <h2>Bestsellers</h2>
           <p>Fan-Favorite Sneakers, Flats, and Slip-Ons</p>
           <div class="hover-buttons">
-            <button class="shop-btn">Shop Men</button>
-            <button class="shop-btn">Shop Women</button>
-          </div>
-        </div>
-      </div>
-      <div class="product-box">
-        <img src="images/Shoes2.jpg" alt="New Arrivals" class="product-image" />
-        <div class="product-content">
-          <h2>New Arrivals</h2>
-          <p>The Latest Styles & Limited-Edition Colors</p>
-          <div class="hover-buttons">
-            <button class="shop-btn">Shop Men</button>
-            <button class="shop-btn">Shop Women</button>
+            <button
+              class="shop-btn"
+              onclick="window.location.href='product-listing.html#men-section'"
+            >
+              Shop Men
+            </button>
+            <button
+              class="shop-btn"
+              onclick="window.location.href='product-listing.html#women-section'"
+            >
+              Shop Women
+            </button>
           </div>
         </div>
       </div>
       <div class="product-box">
         <img
-          src="images/Shoes3.jpg"
+        src="https://images.unsplash.com/photo-1640026199235-c24aa417b552?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+        alt="New Arrivals" class="product-image" />
+        <div class="product-content">
+          <h2>New Arrivals</h2>
+          <p>The Latest Styles & Limited-Edition Colors</p>
+          <div class="hover-buttons">
+            <button
+              class="shop-btn"
+              onclick="window.location.href='product-listing.html#men-section'"
+            >
+              Shop Men
+            </button>
+            <button
+              class="shop-btn"
+              onclick="window.location.href='product-listing.html#women-section'"
+            >
+              Shop Women
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="product-box">
+        <img
+          src="https://images.unsplash.com/photo-1665479000567-951146b0c844?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="Spring Essentials"
           class="product-image"
         />
@@ -255,8 +293,18 @@
           <h2>Spring Essentials</h2>
           <p>Breezy Shoes Made From Tree Fiber For Warmer Days Ahead</p>
           <div class="hover-buttons">
-            <button class="shop-btn">Shop Men</button>
-            <button class="shop-btn">Shop Women</button>
+            <button
+              class="shop-btn"
+              onclick="window.location.href='product-listing.html#men-section'"
+            >
+              Shop Men
+            </button>
+            <button
+              class="shop-btn"
+              onclick="window.location.href='product-listing.html#women-section'"
+            >
+              Shop Women
+            </button>
           </div>
         </div>
       </div>
@@ -285,6 +333,91 @@
       </div>
     </section>
 
+    <!-- Updated Styles for Elite Product Gallery Section -->
+    <style>
+      .elite-gallery-section {
+        padding: 60px 20px;
+        background-color: #f9f9f9;
+      }
+
+      .elite-gallery-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+
+      .elite-product-box {
+        position: relative;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        min-height: 400px; /* Increased height for the product div */
+      }
+
+      .elite-product-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .elite-product-image {
+        width: 100%;
+        height: 280px; /* Adjusted to accommodate increased div height */
+        object-fit: cover;
+        display: block;
+      }
+
+      .elite-product-info {
+        padding: 15px;
+        text-align: left; /* Align text to the left */
+      }
+
+      .elite-product-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 5px;
+        text-align: left; /* Ensure left alignment */
+      }
+
+      .elite-product-price {
+        font-size: 16px;
+        color: #e53e3e;
+        margin: 0;
+        text-align: left; /* Ensure left alignment */
+      }
+
+      .elite-product-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .elite-product-box:hover .elite-product-overlay {
+        opacity: 1;
+      }
+
+      .elite-product-overlay .premium-action-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border-radius: 0; /* Set border-radius to 0 for a sharp, rectangular button */
+        cursor: pointer;
+      }
+    </style>
+
     <!-- Featured Stories Section -->
     <section class="featured-stories-section" id="featured-stories">
       <h1 class="stories-heading">To Read</h1>
@@ -309,7 +442,7 @@
         <div class="featured-stories-container">
           <div class="featured-story">
             <img
-              src="images/Story1.jpg"
+              src="https://images.unsplash.com/photo-1608256264403-74a5ab98311e?q=80&w=1370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Story 1"
               class="featured-story-image"
             />
@@ -320,7 +453,7 @@
                 season.
               </p>
               <button
-                class="premium-action-btn"
+                class="premium-action-btn1"
                 onclick="window.location.href='LeatherBoots.html'"
               >
                 Read More
@@ -329,7 +462,7 @@
           </div>
           <div class="featured-story">
             <img
-              src="images/Story2.jpg"
+              src="https://images.unsplash.com/photo-1681958757409-accf82b7e462?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Story 2"
               class="featured-story-image"
             />
@@ -340,7 +473,7 @@
                 collection.
               </p>
               <button
-                class="premium-action-btn"
+                class="premium-action-btn1"
                 onclick="window.location.href='SpringStyling.html'"
               >
                 Read More
@@ -349,7 +482,7 @@
           </div>
           <div class="featured-story">
             <img
-              src="images/Story3.jpg"
+              src="https://images.unsplash.com/photo-1637154757530-4c224829c92b?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Story 3"
               class="featured-story-image"
             />
@@ -358,12 +491,17 @@
               <p class="featured-story-text">
                 Meet the creators of our premium sneaker line.
               </p>
-              <button class="premium-action-btn">Read More</button>
+              <button
+                class="premium-action-btn1"
+                onclick="window.location.href='behind-design.html'"
+              >
+                Read More
+              </button>
             </div>
           </div>
           <div class="featured-story">
             <img
-              src="images/Story4.jpg"
+              src="https://images.unsplash.com/photo-1706280614737-fcc70630f933?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Story 4"
               class="featured-story-image"
             />
@@ -372,12 +510,17 @@
               <p class="featured-story-text">
                 Stay warm and stylish with our top picks for winter.
               </p>
-              <button class="premium-action-btn">Read More</button>
+              <button
+                class="premium-action-btn1"
+                onclick="window.location.href='SpringStyling.html'"
+              >
+                Read More
+              </button>
             </div>
           </div>
           <div class="featured-story">
             <img
-              src="images/Story5.jpg"
+              src="https://plus.unsplash.com/premium_photo-1713586580802-854a58542159?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Story 5"
               class="featured-story-image"
             />
@@ -386,12 +529,17 @@
               <p class="featured-story-text">
                 Learn how we’re making eco-friendly choices in our designs.
               </p>
-              <button class="premium-action-btn">Read More</button>
+              <button
+                class="premium-action-btn1"
+                onclick="window.location.href='behind-design.html'"
+              >
+                Read More
+              </button>
             </div>
           </div>
           <div class="featured-story">
             <img
-              src="images/Story6.jpg"
+              src="https://images.unsplash.com/photo-1653307633753-c75da59ce9e9?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Story 6"
               class="featured-story-image"
             />
@@ -400,7 +548,12 @@
               <p class="featured-story-text">
                 Dress the whole family with our versatile collection.
               </p>
-              <button class="premium-action-btn">Read More</button>
+              <button
+                class="premium-action-btn1"
+                onclick="window.location.href='SpringStyling.html'"
+              >
+                Read More
+              </button>
             </div>
           </div>
         </div>
@@ -613,7 +766,7 @@
                   <p class="elite-product-name">${
                     product.name || "Unnamed Product"
                   }</p>
-                  <p class="elite-product-price">${
+                  <p class="elite-product-price">$${
                     product.price_range || product.price || "N/A"
                   }</p>
                 </div>

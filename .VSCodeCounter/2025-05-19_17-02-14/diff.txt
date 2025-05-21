@@ -1,0 +1,71 @@
+Date : 2025-05-19 17:02:14
+Directory : f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public
+Total : 40 files,  10972 codes, -182 comments, 958 blanks, all 11748 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |         16 |      7,816 |        174 |        450 |      8,440 |
+| CSS        |          8 |      2,987 |         89 |        561 |      3,637 |
+| JavaScript |         16 |        169 |       -445 |        -53 |       -329 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                       | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                          |         40 |     10,972 |       -182 |        958 |     11,748 |
+| . (Files)                                                                                                  |         16 |      7,816 |        174 |        450 |      8,440 |
+| ..                                                                                                         |          6 |     -1,044 |       -798 |       -242 |     -2,084 |
+| ..\src                                                                                                     |          6 |     -1,044 |       -798 |       -242 |     -2,084 |
+| css                                                                                                        |          8 |      2,987 |         89 |        561 |      3,637 |
+| js                                                                                                         |         10 |      1,213 |        353 |        189 |      1,755 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                   | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\LeatherBoots.html               | HTML       |        671 |         14 |         17 |        702 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\SpringStyling.html              | HTML       |        862 |         19 |         22 |        903 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\admin-sign-in.html              | HTML       |        105 |          0 |          6 |        111 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\admin.html                      | HTML       |        235 |          8 |          5 |        248 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\cart.html                       | HTML       |        270 |         11 |         16 |        297 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\checkout.html                   | HTML       |        820 |          6 |         47 |        873 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\admin-styles.css            | CSS        |        383 |          6 |         64 |        453 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\cart.css                    | CSS        |        635 |         20 |        129 |        784 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\footer.css                  | CSS        |        119 |          1 |         20 |        140 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\main_responsive.css         | CSS        |        454 |         28 |        111 |        593 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\order-management-styles.css | CSS        |        276 |          4 |         48 |        328 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\product-listing-styles.css  | CSS        |        272 |          7 |         48 |        327 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\styles.css                  | CSS        |        767 |         23 |        131 |        921 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\css\user-profile.css            | CSS        |         81 |          0 |         10 |         91 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\index.html                      | HTML       |        682 |         18 |         46 |        746 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\admin-script.js              | JavaScript |        136 |         10 |         12 |        158 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\admin-sign-in-script.js      | JavaScript |         28 |          2 |          4 |         34 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\cart.js                      | JavaScript |        234 |          3 |         20 |        257 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\hash-password.js             | JavaScript |         10 |          0 |          2 |         12 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\order-management-script.js   | JavaScript |          8 |          3 |          2 |         13 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\product-details-script.js    | JavaScript |        187 |        153 |         50 |        390 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\product-listing-script.js    | JavaScript |        167 |        143 |         43 |        353 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\script.js                    | JavaScript |         64 |         12 |         16 |         92 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\session-saving.js            | JavaScript |        103 |         14 |          7 |        124 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\js\signup-signin.js             | JavaScript |        276 |         13 |         33 |        322 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\order-confirmation.html         | HTML       |        578 |          4 |         46 |        628 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\order-tracking.html             | HTML       |        461 |          4 |         31 |        496 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\order_management.html           | HTML       |        158 |          6 |          4 |        168 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\product-details.html            | HTML       |        448 |          1 |          1 |        450 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\product-listing.html            | HTML       |        232 |         32 |         20 |        284 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\profile.html                    | HTML       |        503 |          6 |         50 |        559 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\purchase-history.html           | HTML       |        724 |         10 |         50 |        784 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\search.html                     | HTML       |        650 |         26 |         54 |        730 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\public\signup-signin.html              | HTML       |        417 |          9 |         35 |        461 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\Product_listing_server.js          | JavaScript |        -80 |          0 |         -7 |        -87 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\admin_server.js                    | JavaScript |       -330 |        -26 |        -39 |       -395 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\checkout.js                        | JavaScript |        -67 |        -83 |        -24 |       -174 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\db.js                              | JavaScript |        -12 |         -1 |         -2 |        -15 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\server.js                          | JavaScript |       -192 |       -673 |       -104 |       -969 |
+| f:\Bahria University On Campus\BSE-4A\DBMS-Lab\Project\DBMS-Project\src\userRoutes.js                      | JavaScript |       -363 |        -15 |        -66 |       -444 |
+| Total                                                                                                      |            |     10,972 |       -182 |        958 |     11,748 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

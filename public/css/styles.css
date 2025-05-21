@@ -573,6 +573,26 @@ body {
     
 }
 
+.premium-action-btn1 {
+    padding: 12px 30px;
+    background-color: #fff;
+    border: 2px solid #fff;
+    font-size: 15px;
+    font-weight: 400;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    
+    border: 0.5px solid #000000;
+    /* border-color: #000000; */
+}
+
+.premium-action-btn1:hover {
+    background-color: #000000;
+    color: #fff;
+    border-color: #333;
+    
+}
 
 /* Featured Stories Section Styles */
 .featured-stories-section {

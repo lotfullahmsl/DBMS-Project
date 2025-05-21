@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Behind the Design | SoleNest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      .article-image {
+        transition: transform 0.3s ease;
+      }
+      .article-image:hover {
+        transform: scale(1.02);
+      }
+      .design-card:hover .design-image {
+        transform: scale(1.05);
+      }
+      .design-image {
+        transition: transform 0.4s ease;
+      }
+      .highlight {
+        background: linear-gradient(120deg, #f6e05e 0%, #f6e05e 100%);
+        background-repeat: no-repeat;
+        background-size: 100% 40%;
+        background-position: 0 88%;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.6s ease-out forwards;
+      }
+      .craftsmanship-bg {
+        background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <a href="index.html" class="text-xl font-bold text-gray-900"
+              >SoleNest</a
+            >
+          </div>
+          <div class="flex items-center space-x-4">
+            <a href="#" class="text-gray-500 hover:text-gray-700">
+              <i class="fas fa-search"></i>
+            </a>
+            <a href="#" class="text-gray-500 hover:text-gray-700">
+              <i class="far fa-heart"></i>
+            </a>
+            <a href="#" class="relative text-gray-500 hover:text-gray-700">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="#" class="text-gray-500 hover:text-gray-700">Login</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="uppercase tracking-widest text-gray-300 text-sm"
+          >Design Philosophy</span
+        >
+        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
+          Behind the Design
+        </h1>
+        <div class="flex items-center justify-center space-x-4">
+          <div class="flex items-center">
+            <img
+              src="https://avatars.githubusercontent.com/u/149297929?v=4"
+              alt="Author"
+              class="w-10 h-10 rounded-full"
+            />
+            <span class="ml-2">Lotfullah Muslimwal</span>
+          </div>
+          <span>•</span>
+          <span>February 15, 2024</span>
+          <span>•</span>
+          <span>10 min read</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Introduction -->
+      <section class="mb-16 animate-fadeIn" style="animation-delay: 0.2s">
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">
+          At SoleNest, we believe footwear should be equal parts art and
+          engineering.
+          <span class="highlight"
+            >Each pair represents hundreds of hours of craftsmanship</span
+          >, blending timeless techniques with cutting-edge innovation. This is
+          the story of how our shoes come to life.
+        </p>
+        <div class="relative rounded-xl overflow-hidden article-image">
+          <img
+            src="https://images.unsplash.com/photo-1421757295538-9c80958e75b0?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="SoleNest design studio"
+            class="w-full h-auto"
+          />
+          <div
+            class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6"
+          >
+            <p class="text-white text-sm">
+              Our design team sketching the next SoleNest collection
+            </p>
+          </div>
+        </div>
+        <p class="text-lg text-gray-700 leading-relaxed mt-6">
+          From the initial concept sketches to the final quality checks, every
+          step in our process is executed with meticulous attention to detail.
+          Join us as we pull back the curtain on what makes SoleNest shoes
+          unique.
+        </p>
+      </section>
+
+      <!-- Section 1 -->
+      <section class="mb-16 animate-fadeIn" style="animation-delay: 0.4s">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 border-b pb-2">
+          1. The Inspiration Phase
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+          <div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              Our design journey begins with inspiration drawn from
+              architecture, nature, and urban landscapes. Each season, our
+              creative team travels globally to source materials and ideas that
+              inform our collections.
+            </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fas fa-lightbulb text-yellow-500 mt-1 mr-2"></i>
+                <span
+                  >Mood boards capturing textures, colors, and silhouettes</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-palette text-blue-500 mt-1 mr-2"></i>
+                <span
+                  >Material research from our network of global suppliers</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-route text-green-500 mt-1 mr-2"></i>
+                <span
+                  >Cultural immersion in cities known for footwear
+                  heritage</span
+                >
+              </li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed">
+              This phase typically lasts 2-3 months, resulting in hundreds of
+              sketches that get refined down to our seasonal collection of 30-40
+              styles.
+            </p>
+          </div>
+          <div class="relative rounded-xl overflow-hidden article-image">
+            <img
+              src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
+              alt="Design inspiration"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+
+        <!-- Design Process -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+          <h3 class="font-bold text-xl mb-4 text-gray-900">
+            Our Creative Process Timeline
+          </h3>
+          <div class="relative">
+            <!-- Timeline -->
+            <div
+              class="border-l-2 border-gray-200 absolute h-full left-4 top-0"
+            ></div>
+
+            <!-- Timeline Item 1 -->
+            <div class="mb-8 relative pl-8">
+              <div
+                class="absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-indigo-600 border-4 border-indigo-100"
+              ></div>
+              <h4 class="font-medium text-gray-900 mb-1">
+                Research & Inspiration
+              </h4>
+              <p class="text-sm text-gray-600">
+                Weeks 1-12: Global trend research and concept development
+              </p>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="mb-8 relative pl-8">
+              <div
+                class="absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-100"
+              ></div>
+              <h4 class="font-medium text-gray-900 mb-1">
+                Sketching & Prototyping
+              </h4>
+              <p class="text-sm text-gray-600">
+                Weeks 13-18: Initial designs and first physical prototypes
+              </p>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="mb-8 relative pl-8">
+              <div
+                class="absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-purple-600 border-4 border-purple-100"
+              ></div>
+              <h4 class="font-medium text-gray-900 mb-1">Material Selection</h4>
+              <p class="text-sm text-gray-600">
+                Weeks 19-22: Sourcing premium leathers and components
+              </p>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="relative pl-8">
+              <div
+                class="absolute -left-1.5 top-0 w-4 h-4 rounded-full bg-green-600 border-4 border-green-100"
+              ></div>
+              <h4 class="font-medium text-gray-900 mb-1">
+                Production & Quality Control
+              </h4>
+              <p class="text-sm text-gray-600">
+                Weeks 23-36: Manufacturing with artisan techniques
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="mb-16 animate-fadeIn" style="animation-delay: 0.6s">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 border-b pb-2">
+          2. The Craftsmanship
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+          <div class="order-2 md:order-1">
+            <p class="text-gray-700 leading-relaxed mb-4">
+              What sets SoleNest apart is our commitment to traditional
+              shoemaking techniques combined with modern comfort technology.
+              Each pair passes through the hands of at least 12 skilled
+              artisans.
+            </p>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+              <p class="text-yellow-700 font-medium">Did You Know?</p>
+              <p class="text-gray-700">
+                Our signature cushioning system was developed after studying the
+                foot anatomy of 1,000+ wearers.
+              </p>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+              From hand-cutting leather to precision stitching, our craftspeople
+              train for years to master techniques that machines simply can't
+              replicate with the same quality.
+            </p>
+          </div>
+          <div
+            class="relative rounded-xl overflow-hidden article-image order-1 md:order-2"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1580571961449-f1d0e40daf50?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Shoemaking craftsmanship"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+
+        <!-- Craftsmanship Features -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <div class="text-indigo-600 text-3xl mb-4">
+              <i class="fas fa-cut"></i>
+            </div>
+            <h4 class="font-medium text-gray-900 mb-2">Precision Cutting</h4>
+            <p class="text-gray-600 text-sm">
+              Each leather piece is hand-cut to ensure optimal grain direction
+              and minimal waste.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <div class="text-blue-600 text-3xl mb-4">
+              <i class="fas fa-shoe-prints"></i>
+            </div>
+            <h4 class="font-medium text-gray-900 mb-2">Anatomical Lasts</h4>
+            <p class="text-gray-600 text-sm">
+              Custom foot forms designed for different foot shapes and walking
+              patterns.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-sm">
+            <div class="text-purple-600 text-3xl mb-4">
+              <i class="fas fa-thread"></i>
+            </div>
+            <h4 class="font-medium text-gray-900 mb-2">Hand Stitching</h4>
+            <p class="text-gray-600 text-sm">
+              Critical stress points are reinforced with waxed thread for
+              durability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="mb-16 animate-fadeIn" style="animation-delay: 0.8s">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 border-b pb-2">
+          3. The Materials
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 items-center mb-8">
+          <div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              We source only the finest materials from ethical suppliers around
+              the world. Our leathers come from Italian tanneries with centuries
+              of expertise, while our sustainable innovations include
+              plant-based alternatives.
+            </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fas fa-leaf text-green-500 mt-1 mr-2"></i>
+                <span>Vegetable-tanned full-grain leathers from Tuscany</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-recycle text-blue-500 mt-1 mr-2"></i>
+                <span
+                  >Recycled rubber soles with 30% post-consumer content</span
+                >
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-water text-teal-500 mt-1 mr-2"></i>
+                <span>Water-based adhesives free from harmful solvents</span>
+              </li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed">
+              Every material is tested for durability, comfort, and
+              environmental impact before being approved for use in our
+              collections.
+            </p>
+          </div>
+          <div class="relative rounded-xl overflow-hidden article-image">
+            <img
+              src="https://images.unsplash.com/photo-1585313736086-9a10c24f30dc?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Premium materials"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+
+        <!-- Material Guide -->
+        <div class="bg-white p-6 rounded-xl shadow-sm overflow-x-auto">
+          <h3 class="font-bold text-xl mb-4 text-gray-900">
+            Our Material Standards
+          </h3>
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Material
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Source
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Properties
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  Sustainability
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td
+                  class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Full-Grain Leather
+                </td>
+                <td class="px-4 py-3 text-sm text-gray-500">Italy</td>
+                <td class="px-4 py-3 text-sm text-gray-500">
+                  Breathable, durable, develops patina
+                </td>
+                <td class="px-4 py-3 text-sm text-gray-500">
+                  Chrome-free tanning, Gold-rated LWG
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Recycled Rubber
+                </td>
+                <td class="px-4 py-3 text-sm text-gray-500">Germany</td>
+                <td class="px-4 py-3 text-sm text-gray-500">
+                  Shock-absorbing, slip-resistant
+                </td>
+                <td class="px-4 py-3 text-sm text-gray-500">
+                  30% post-industrial content
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900"
+                >
+                  Organic Cotton
+                </td>
+                <td class="px-4 py-3 text-sm text-gray-500">Turkey</td>
+                <td class="px-4 py-3 text-sm text-gray-500">
+                  Breathable, soft, moisture-wicking
+                </td>
+                <td class="px-4 py-3 text-sm text-gray-500">
+                  GOTS certified organic
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section
+        class="bg-indigo-50 p-8 rounded-xl mb-16 animate-fadeIn"
+        style="animation-delay: 1s"
+      >
+        <h2 class="text-2xl font-bold mb-4 text-gray-900">
+          The SoleNest Difference
+        </h2>
+        <p class="text-gray-700 leading-relaxed mb-4">
+          When you choose SoleNest, you're not just buying shoes—you're
+          investing in:
+        </p>
+        <ol class="list-decimal list-inside space-y-2 mb-6 text-gray-700">
+          <li class="pl-2">
+            <span class="font-medium">Artisan Quality:</span> Handcrafted
+            details that mass production can't replicate
+          </li>
+          <li class="pl-2">
+            <span class="font-medium">Thoughtful Design:</span> Every curve and
+            stitch serves both form and function
+          </li>
+          <li class="pl-2">
+            <span class="font-medium">Responsible Materials:</span> Ethically
+            sourced with minimal environmental impact
+          </li>
+          <li class="pl-2">
+            <span class="font-medium">Lasting Comfort:</span> Engineered based
+            on anatomical research
+          </li>
+        </ol>
+        <p class="text-gray-700 leading-relaxed">
+          We invite you to experience the difference that careful craftsmanship
+          makes. Our shoes are designed to look better with age, developing
+          character as they become uniquely yours.
+        </p>
+      </section>
+
+      <!-- Related Articles -->
+      <section class="mb-16">
+        <h2 class="text-2xl font-bold mb-8 text-gray-900">
+          You Might Also Like
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg mb-3">
+              <img
+                src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80"
+                alt="Leather care"
+                class="w-full h-48 object-cover transition group-hover:scale-105"
+              />
+            </div>
+            <h3 class="font-medium text-gray-900 group-hover:text-blue-600">
+              How to Care for Your Leather Shoes
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">6 min read</p>
+          </a>
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg mb-3">
+              <img
+                src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"
+                alt="Sustainable fashion"
+                class="w-full h-48 object-cover transition group-hover:scale-105"
+              />
+            </div>
+            <h3 class="font-medium text-gray-900 group-hover:text-blue-600">
+              Our Sustainability Commitment
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">8 min read</p>
+          </a>
+          <a href="#" class="group">
+            <div class="overflow-hidden rounded-lg mb-3">
+              <img
+                src="https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80"
+                alt="New collection"
+                class="w-full h-48 object-cover transition group-hover:scale-105"
+              />
+            </div>
+            <h3 class="font-medium text-gray-900 group-hover:text-blue-600">
+              Spring 2024 Collection Preview
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">5 min read</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <section
+        class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-xl"
+      >
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-2xl font-bold mb-2">Discover More About Our Craft</h2>
+          <p class="mb-6">
+            Subscribe for exclusive behind-the-scenes content and early access
+            to new collections
+          </p>
+          <form class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Your email address"
+              class="flex-1 px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              required
+            />
+            <button
+              type="submit"
+              class="bg-white text-indigo-800 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p class="text-sm text-indigo-200 mt-4">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">SoleNest</h3>
+            <p class="text-gray-400">
+              Where craftsmanship meets contemporary design.
+            </p>
+            <div class="flex space-x-4 mt-4">
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-gray-400 hover:text-white"
+                ><i class="fab fa-pinterest-p"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-medium mb-4">Shop</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Men's Collection</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Women's Collection</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Limited Editions</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Best Sellers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Gift Cards</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium mb-4">About</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Our Story</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Craftsmanship</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Sustainability</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Press</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white">Careers</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-medium mb-4">Help</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Customer Service</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Size Guide</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Returns & Exchanges</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Shipping Info</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-gray-400 hover:text-white"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm">
+            © 2024 SoleNest. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a href="#" class="text-gray-400 hover:text-white text-sm"
+              >Privacy Policy</a
+            >
+            <a href="#" class="text-gray-400 hover:text-white text-sm"
+              >Terms of Service</a
+            >
+            <a href="#" class="text-gray-400 hover:text-white text-sm"
+              >Accessibility</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple animation trigger as user scrolls
+      document.addEventListener("DOMContentLoaded", function () {
+        const animatedSections = document.querySelectorAll(".animate-fadeIn");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        animatedSections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Highlight current section in view
+        const sections = document.querySelectorAll("section");
+        window.addEventListener("scroll", function () {
+          let current = "";
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 300) {
+              current = section.getAttribute("id");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

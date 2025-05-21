@@ -56,7 +56,8 @@
 
       .loading-bar {
         width: 0%;
-        transition: width 0.5s ease;
+        height: 100%;
+        transition: width 0.3s ease; /* Reduced transition time for smoother updates */
       }
 
       .skeleton {
@@ -79,10 +80,6 @@
         }
       }
 
-      /* .search-input:focus {
-        box-shadow: 0 0 0 3px rgba(244, 178, 23, 0.3); 
-      } */
-      /* change the color to #c93030 */
       .search-input {
         border: 1px solid #c93030;
         transition: all 0.3s ease;
@@ -145,7 +142,7 @@
         <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
           <div
             id="loadingBar"
-            class="h-full loading-bar"
+            class="loading-bar"
             style="background: linear-gradient(to right, #c93030, #7a1f1f)"
           ></div>
         </div>
@@ -159,15 +156,11 @@
       <header class="flex justify-between items-center mb-12">
         <div class="flex items-center">
           <a href="index.html" class="navbar-logo">
-            <h1 class="text-2xl font-bold text-gray-800">SOLE NEST</h1>
+            <h1 class="text-2xl font-bold text-gray-800">SoleNest Home</h1>
           </a>
         </div>
         <!-- Navbar For Profile -->
         <div class="navbar-right">
-          <!-- <a href="admin-sign-in.html">ADMIN</a>
-          <a href="search.html">Search</a>
-          <a href="product-listing.html">STORES</a>
-          <a href="#"><i class="fas fa-search"></i></a> -->
           <a href="cart.html" style="margin-left: -2vh">CART</a>
           <a id="auth-link" href="signup-signin.html">Login</a>
           <a href="profile.html" id="user-badge" class="user-badge hidden">?</a>
@@ -267,15 +260,6 @@
             display: none;
           }
         </style>
-        <!--  -->
-        <!-- <div class="flex items-center space-x-4">
-          <button class="p-2 rounded-full hover:bg-gray-100 transition">
-            <i class="fas fa-shopping-cart text-gray-600"></i>
-          </button>
-          <button class="p-2 rounded-full hover:bg-gray-100 transition">
-            <i class="fas fa-user text-gray-600"></i>
-          </button>
-        </div> -->
       </header>
 
       <!-- Hero Search Section -->
@@ -376,7 +360,7 @@
             >
               <div class="skeleton h-48 w-full"></div>
               <div class="p-4">
-                <div class="skeleton h-5 w-3/4 mb-2"></div>
+                <div class="skeleton h-5 w-3 pizza4 mb-2"></div>
                 <div class="skeleton h-4 w-1/2 mb-3"></div>
                 <div class="skeleton h-4 w-1/3"></div>
               </div>
@@ -543,12 +527,13 @@
               loadingOverlay.style.display = "none";
               loadCategories();
               loadProducts();
-            }, 500);
+            }, 500); // Keep the fade-out duration
           } else {
-            width += 10;
+            width += 5; // Smaller increments for smoother animation
             loadingBar.style.width = width + "%";
+            console.log("Loading bar width:", loadingBar.style.width); // Debug log to confirm updates
           }
-        }, 200);
+        }, 100); // Faster updates for smoother animation (every 100ms)
 
         // Fetch categories and populate dropdown and buttons
         async function loadCategories() {
@@ -672,7 +657,7 @@
                   priceValue = 0; // Fallback to 0 if conversion fails
                 }
                 html += `
-                                <div class="bg-white rounded-xl overflow-hidden烧shadow-sm search-card group">
+                                <div class="bg-white rounded-xl overflow-hidden shadow-sm search-card group">
                                     <div class="relative h-48 overflow-hidden">
                                         <img src="${
                                           product.primary_image_url ||
@@ -681,7 +666,7 @@
                                              alt="${product.name}" 
                                              class="w-full h-full object-contain transition duration-300 group-hover:scale-105"
                                              onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
-                                        <a href="product-details.html?product_id=${
+                                        <a href="product-listing.html?id=${
                                           product.product_id
                                         }" class="view-details-btn">
                                             View Details
